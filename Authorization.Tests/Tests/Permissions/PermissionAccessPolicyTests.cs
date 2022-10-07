@@ -1,15 +1,10 @@
 ﻿using Authorization.AccessPolicy;
 using Authorization.Exceptions;
 using Authorization.Permissions;
-using Authorization.Roles.Permissions;
-using Authorization.Tests.Sample;
-using Authorization.Tests.Sample.DocumentOwner;
 using Moq;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Xunit;
 
-namespace Authorization.Roles.Permissions.AccessPolicy
+namespace Authorization.Tests.Tests.Permissions
 {
     public class PermissionAccessPolicyTests
     {

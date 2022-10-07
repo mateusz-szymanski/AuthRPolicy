@@ -1,10 +1,9 @@
 ﻿using Authorization.AccessPolicy;
 using Authorization.Exceptions;
 using Authorization.Permissions;
-using System.Xml.Linq;
 using Xunit;
 
-namespace Authorization.Roles.Permissions.AccessPolicy
+namespace Authorization.Tests.Tests.Permissions
 {
     public class PermissionTests
     {

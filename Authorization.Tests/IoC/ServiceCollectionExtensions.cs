@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Authorization.IoC
+namespace Authorization.Tests.IoC
 {
     public static class ServiceCollectionExtensions
     {

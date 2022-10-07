@@ -1,14 +1,15 @@
 ﻿using Authorization.AccessPolicy;
-using Authorization.IoC;
 using Authorization.Permissions;
+using Authorization.Roles;
 using Authorization.Services;
+using Authorization.Tests.IoC;
 using Authorization.Tests.Stubs;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Authorization.Roles.Permissions.AccessPolicy
+namespace Authorization.Tests.Tests.Services
 {
     public class AuthorizationServiceTests
     {

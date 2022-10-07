@@ -1,6 +1,4 @@
-﻿using Authorization.Permissions;
-
-namespace Authorization.AccessPolicy
+﻿namespace Authorization.AccessPolicy
 {
     public interface IAccessPolicy
     {

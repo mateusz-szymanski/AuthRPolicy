@@ -1,5 +1,4 @@
-﻿using Authorization;
-using Authorization.Permissions;
+﻿using Authorization.Permissions;
 
 namespace Authorization.Services
 {

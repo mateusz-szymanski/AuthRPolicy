@@ -1,8 +1,8 @@
 ﻿using Authorization.Exceptions;
-using Authorization.Permissions;
+using Authorization.Roles;
 using Xunit;
 
-namespace Authorization.Roles.Permissions.AccessPolicy
+namespace Authorization.Tests.Tests.Roles
 {
     public class RoleTests
     {
