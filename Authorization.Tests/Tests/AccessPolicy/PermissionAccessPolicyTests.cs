@@ -17,13 +17,13 @@ namespace Authorization.Roles.Permissions.AccessPolicy
         public void Constructor_ShouldThrowMissingAccessPoliciesForPermissionAccessPolicyException_GivenPermissionAndNoAccessPolicies()
         {
             // Arrange
-            var permission = new Permission("my-permission");
+            var permissionMainName = "my-permission";
             var accessPolices = new IAccessPolicy[0];
 
             // Act
             // Assert
             Assert.Throws<MissingAccessPoliciesForPermissionAccessPolicyException>(
-                () => new PermissionAccessPolicy(permission, accessPolices)
+                () => new PermissionAccessPolicy(permissionMainName, accessPolices)
             );
         }
 
@@ -31,7 +31,7 @@ namespace Authorization.Roles.Permissions.AccessPolicy
         public void Constructor_ShouldCreateValidObject_GivenPermissionAndOneAccessPolicy()
         {
             // Arrange
-            var permission = new Permission("my-permission");
+            var permissionMainName = "my-permission";
             var accessPolicy1Mock = new Mock<IAccessPolicy>();
             accessPolicy1Mock.Setup(ap => ap.Name).Returns("access-policy-1");
 
@@ -41,10 +41,10 @@ namespace Authorization.Roles.Permissions.AccessPolicy
             };
 
             // Act
-            var permissionAccessPolicy = new PermissionAccessPolicy(permission, accessPolices);
+            var permissionAccessPolicy = new PermissionAccessPolicy(permissionMainName, accessPolices);
 
             // Assert
-            Assert.Equal(permission, permissionAccessPolicy.Permission);
+            Assert.Equal(permissionMainName, permissionAccessPolicy.PermissionMainName);
             Assert.Equal(accessPolices, permissionAccessPolicy.AccessPolicies);
         }
 
@@ -52,7 +52,7 @@ namespace Authorization.Roles.Permissions.AccessPolicy
         public void Constructor_ShouldCreateValidObject_GivenPermissionAndTwoAccessPolicies()
         {
             // Arrange
-            var permission = new Permission("my-permission");
+            var permissionMainName = "my-permission";
 
             var accessPolicy1Mock = new Mock<IAccessPolicy>();
             accessPolicy1Mock.Setup(ap => ap.Name).Returns("access-policy-1");
@@ -67,12 +67,11 @@ namespace Authorization.Roles.Permissions.AccessPolicy
             };
 
             // Act
-            var permissionAccessPolicy = new PermissionAccessPolicy(permission, accessPolices);
+            var permissionAccessPolicy = new PermissionAccessPolicy(permissionMainName, accessPolices);
 
             // Assert
-            Assert.Equal(permission, permissionAccessPolicy.Permission);
+            Assert.Equal(permissionMainName, permissionAccessPolicy.PermissionMainName);
             Assert.Equal(accessPolices, permissionAccessPolicy.AccessPolicies);
         }
-
     }
 }

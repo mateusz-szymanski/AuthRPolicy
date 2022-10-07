@@ -5,9 +5,10 @@ namespace Authorization.Exceptions
 {
     public class MissingPermissionNameException : AuthorizationException
     {
-        public MissingPermissionNameException()
-            : this($"Permission must have a name")
+        public static MissingPermissionNameException New(string permissionMainName)
         {
+            var message = "Permission must have a name";
+            return new MissingPermissionNameException(message);
         }
 
         protected MissingPermissionNameException(string? message) : base(message)

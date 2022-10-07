@@ -28,24 +28,30 @@ namespace Authorization.Services
 
         public bool IsUserAuthorized(IUser user, PermissionAccessPolicy permissionAccessPolicy)
         {
-            _logger.LogInformation("Authorizing user {userName} for {permission}", user.UserName, permissionAccessPolicy.Permission.Name);
+            _logger.LogInformation("Authorizing user {userName} for {permission}", user.UserName, permissionAccessPolicy.PermissionMainName);
 
             var allRoles = _roleProvider.GetAvailableRoles();
             var userRoles = allRoles.Intersect(user.Roles);
             var userPermissions = userRoles.SelectMany(ur => _permissionProvider.GetPermissionsForRole(ur));
 
-            var hasRequiredPermission = userPermissions.Contains(permissionAccessPolicy.Permission);
+            var matchingUserPermissions = userPermissions.Where(up => up.HasMainNameEqualTo(permissionAccessPolicy.PermissionMainName));
+
+            var hasRequiredPermission = matchingUserPermissions.Any();
             if (!hasRequiredPermission)
             {
-                _logger.LogInformation("User {userName} has no required permission {permission}", user.UserName, permissionAccessPolicy.Permission.Name);
+                _logger.LogInformation("User {userName} has no required permission {permission}", user.UserName, permissionAccessPolicy.PermissionMainName);
                 return false;
             }
 
-            _logger.LogInformation("User {userName} has required permission {permission}", user.UserName, permissionAccessPolicy.Permission.Name);
+            _logger.LogInformation("User {userName} has required permission {permission}", user.UserName, permissionAccessPolicy.PermissionMainName);
 
             _logger.LogInformation("About to check access policies: {accessPolicies}", permissionAccessPolicy.AccessPolicies.Select(ap => ap.Name));
-            
-            foreach (var accessPolicy in permissionAccessPolicy.AccessPolicies)
+
+            var matchingAccessPolicies = from accessPolicy in permissionAccessPolicy.AccessPolicies
+                                         join userPermission in matchingUserPermissions on accessPolicy.GetType() equals userPermission.AccessPolicyType
+                                         select accessPolicy;
+
+            foreach (var accessPolicy in matchingAccessPolicies)
             {
                 var hasAccess = CheckAccessPolicy(user, accessPolicy);
 

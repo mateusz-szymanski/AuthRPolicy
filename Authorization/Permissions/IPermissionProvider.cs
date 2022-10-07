@@ -5,6 +5,6 @@ namespace Authorization.Permissions
 {
     public interface IPermissionProvider
     {
-        IEnumerable<Permission> GetPermissionsForRole(Role role);
+        IEnumerable<IPermission> GetPermissionsForRole(Role role);
     }
 }

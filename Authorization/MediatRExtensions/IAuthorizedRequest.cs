@@ -1,4 +1,4 @@
-﻿using Authorization.AccessPolicy;
+﻿using Authorization.Permissions;
 
 namespace Authorization.MediatRExtensions
 {

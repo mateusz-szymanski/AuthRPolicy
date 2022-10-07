@@ -1,5 +1,6 @@
-﻿using Authorization.AccessPolicy;
-using Authorization.MediatRExtensions;
+﻿using Authorization.MediatRExtensions;
+using Authorization.Permissions;
+using Authorization.Tests.Sample.DocumentPermissions;
 
 namespace Authorization.Tests.Sample.Commands
 {
@@ -12,6 +13,6 @@ namespace Authorization.Tests.Sample.Commands
             DocumentId = new(documentId);
         }
 
-        public PermissionAccessPolicy PermissionAccessPolicy => DocumentPermissionsAccessPolicy.ListDocuments(new(DocumentId), new(DocumentId));
+        public PermissionAccessPolicy PermissionAccessPolicy => ListDocuments.AccessPolicy(new(DocumentId), new(DocumentId));
     }
 }

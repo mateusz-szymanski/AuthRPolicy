@@ -1,4 +1,5 @@
-﻿using Authorization.Permissions;
+﻿using Authorization.AccessPolicy;
+using Authorization.Permissions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,10 @@ namespace Authorization.Exceptions
 {
     public class MissingAccessPoliciesForPermissionAccessPolicyException : AuthorizationException
     {
-        public MissingAccessPoliciesForPermissionAccessPolicyException(Permission permission)
-            : this($"Permission access policy for permission {permission.Name} is missing access policies")
+        public static MissingAccessPoliciesForPermissionAccessPolicyException New(string permissionMainName)
         {
+            var message = $"Permission access policy for permission {permissionMainName} is missing access policies";
+            return new MissingAccessPoliciesForPermissionAccessPolicyException(message);
         }
 
         protected MissingAccessPoliciesForPermissionAccessPolicyException(string? message) : base(message)

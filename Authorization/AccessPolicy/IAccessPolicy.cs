@@ -1,7 +1,9 @@
-﻿namespace Authorization.AccessPolicy
+﻿using Authorization.Permissions;
+
+namespace Authorization.AccessPolicy
 {
     public interface IAccessPolicy
     {
-        string Name { get; } // TODO: consider removing
+        string Name { get; }
     }
 }

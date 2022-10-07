@@ -5,5 +5,4 @@
     {
         bool HasAccess(IUser user, TAccessPolicy accessPolicy);
     }
-
 }

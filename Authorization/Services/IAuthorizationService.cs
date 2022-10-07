@@ -1,5 +1,5 @@
 ﻿using Authorization;
-using Authorization.AccessPolicy;
+using Authorization.Permissions;
 
 namespace Authorization.Services
 {
