@@ -46,11 +46,11 @@ namespace Authorization.Services
 
             _logger.LogInformation("User {userName} has required permission {permission}", user.UserName, permissionAccessPolicy.PermissionMainName);
 
-            _logger.LogInformation("About to check access policies: {accessPolicies}", permissionAccessPolicy.AccessPolicies.Select(ap => ap.Name));
-
             var matchingAccessPolicies = from accessPolicy in permissionAccessPolicy.AccessPolicies
                                          join userPermission in matchingUserPermissions on accessPolicy.GetType() equals userPermission.AccessPolicyType
                                          select accessPolicy;
+
+            _logger.LogInformation("About to check access policies: {accessPolicies}", matchingAccessPolicies.Select(ap => ap.Name));
 
             foreach (var accessPolicy in matchingAccessPolicies)
             {
