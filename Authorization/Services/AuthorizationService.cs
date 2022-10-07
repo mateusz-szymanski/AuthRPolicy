@@ -66,7 +66,7 @@ namespace Authorization.Services
             _logger.LogInformation("Checking {accessPolicy} access policy...", accessPolicy.Name);
 
             var accessPolicyType = accessPolicy.GetType();
-            var accessPolicyCheckerType = accessPolicyType.MakeGenericType(accessPolicyType);
+            var accessPolicyCheckerType = typeof(IAccessPolicyChecker<>).MakeGenericType(accessPolicyType);
 
             var accessPolicyChecker = _serviceProvider.GetService(accessPolicyCheckerType);
 
@@ -74,7 +74,7 @@ namespace Authorization.Services
                 throw new Exception($"No checker defined for '{accessPolicy.Name}' access policy"); // TODO: custom exception
 
             var hasAccessMethodInfo = accessPolicyCheckerType.GetMethod(nameof(IAccessPolicyChecker<IAccessPolicy>.HasAccess));
-            var hasAccessResult = hasAccessMethodInfo!.Invoke(accessPolicyChecker, new[] { user, accessPolicyChecker });
+            var hasAccessResult = hasAccessMethodInfo!.Invoke(accessPolicyChecker, new object[] { user, accessPolicy });
 
             var hasAccess = (bool)hasAccessResult!;
 
