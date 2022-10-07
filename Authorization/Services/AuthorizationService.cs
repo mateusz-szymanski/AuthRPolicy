@@ -34,8 +34,9 @@ namespace Authorization.Services
             var userRoles = allRoles.Intersect(user.Roles);
             var userPermissions = userRoles.SelectMany(ur => _permissionProvider.GetPermissionsForRole(ur));
 
-            var matchingUserPermissions = userPermissions.Where(up => up.HasMainNameEqualTo(permissionAccessPolicy.PermissionMainName));
+            _logger.LogInformation("User {userName} permissions {permissions}", user.UserName, userPermissions.Select(up => up.FullName));
 
+            var matchingUserPermissions = userPermissions.Where(up => up.HasMainNameEqualTo(permissionAccessPolicy.PermissionMainName));
             var hasRequiredPermission = matchingUserPermissions.Any();
             if (!hasRequiredPermission)
             {
