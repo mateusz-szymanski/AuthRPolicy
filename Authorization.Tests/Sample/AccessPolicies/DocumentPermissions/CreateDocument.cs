@@ -2,7 +2,7 @@
 using Authorization.Permissions;
 using System;
 
-namespace Authorization.Tests.Sample.DocumentPermissions
+namespace Authorization.Tests.Sample.AccessPolicies.DocumentPermissions
 {
     public static class CreateDocument
     {

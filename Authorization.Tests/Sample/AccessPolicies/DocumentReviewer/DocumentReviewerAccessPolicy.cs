@@ -1,7 +1,7 @@
 ﻿using Authorization.AccessPolicy;
 using Authorization.Tests.Sample.Commands;
 
-namespace Authorization.Tests.Sample.DocumentReviewer
+namespace Authorization.Tests.Sample.AccessPolicies.DocumentReviewer
 {
     public record DocumentReviewerAccessPolicy(DocumentId DocumentId) : IAccessPolicy
     {

@@ -1,6 +1,6 @@
 ﻿using Authorization.Permissions;
 using Authorization.Roles;
-using Authorization.Tests.Sample.DocumentPermissions;
+using Authorization.Tests.Sample.AccessPolicies.DocumentPermissions;
 using System.Collections.Generic;
 
 namespace Authorization.Tests.Sample

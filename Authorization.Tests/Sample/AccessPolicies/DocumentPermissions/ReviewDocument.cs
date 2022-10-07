@@ -1,8 +1,8 @@
 ﻿using Authorization.Permissions;
-using Authorization.Tests.Sample.DocumentReviewer;
+using Authorization.Tests.Sample.AccessPolicies.DocumentReviewer;
 using System;
 
-namespace Authorization.Tests.Sample.DocumentPermissions
+namespace Authorization.Tests.Sample.AccessPolicies.DocumentPermissions
 {
     public static class ReviewDocument
     {

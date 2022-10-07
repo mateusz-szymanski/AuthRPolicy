@@ -1,6 +1,6 @@
 ﻿using Authorization.MediatRExtensions;
 using Authorization.Permissions;
-using Authorization.Tests.Sample.DocumentPermissions;
+using Authorization.Tests.Sample.AccessPolicies.DocumentPermissions;
 
 namespace Authorization.Tests.Sample.Commands
 {
