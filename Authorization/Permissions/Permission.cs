@@ -33,7 +33,7 @@ namespace Authorization.Permissions
 
         private string GetDebuggerDisplay()
         {
-            return FullName;
+            return $"{FullName} - {AccessPolicyType.Name}";
         }
     }
 }
