@@ -1,7 +1,6 @@
 ﻿using Authorization.Permissions;
-using Authorization.Roles;
 
-namespace Authorization.Tests.Sample
+namespace Authorization.Roles
 {
     public interface IRoleProviderBuilder
     {

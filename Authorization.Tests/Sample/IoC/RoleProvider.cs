@@ -1,4 +1,5 @@
-﻿using Authorization.Tests.Sample.AccessPolicies.DocumentPermissions;
+﻿using Authorization.Permissions;
+using Authorization.Tests.Sample.AccessPolicies.DocumentPermissions;
 
 namespace Authorization.Tests.Sample.IoC
 {

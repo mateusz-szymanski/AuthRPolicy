@@ -1,10 +1,9 @@
-﻿using Authorization.Permissions;
-using Authorization.Roles;
+﻿using Authorization.Roles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Authorization.Tests.Sample
+namespace Authorization.Permissions
 {
     public abstract class AbstractRoleProvider : IRoleProvider
     {

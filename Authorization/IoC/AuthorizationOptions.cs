@@ -1,4 +1,5 @@
-﻿using Authorization.Tests.Sample;
+﻿using Authorization.Permissions;
+using Authorization.Roles;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;

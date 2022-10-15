@@ -1,6 +1,5 @@
 ﻿using Authorization.Permissions;
 using Authorization.Roles;
-using Authorization.Tests.Sample;
 
 namespace Authorization.Tests.Stubs
 {
