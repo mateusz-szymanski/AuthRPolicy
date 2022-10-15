@@ -6,7 +6,7 @@ using System.Diagnostics;
 namespace Authorization.Permissions
 {
     [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
-    public class Permission<TAccessPolicy> : IPermission
+    public record Permission<TAccessPolicy> : IPermission
         where TAccessPolicy : IAccessPolicy
     {
         public Type AccessPolicyType { get; }

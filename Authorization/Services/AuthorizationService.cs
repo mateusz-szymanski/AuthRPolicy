@@ -3,6 +3,7 @@ using Authorization.Permissions;
 using Authorization.Roles;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Authorization.Services
@@ -26,15 +27,23 @@ namespace Authorization.Services
             _serviceProvider = serviceProvider;
         }
 
+        // TODO: tests
+        public IEnumerable<IPermission> GetUserPermissions(IUser user)
+        {
+            var allRoles = _roleProvider.GetAvailableRoles();
+            var userRoles = allRoles.Intersect(user.Roles);
+            var userPermissions = userRoles.SelectMany(ur => _permissionProvider.GetPermissionsForRole(ur)).Distinct();
+
+            _logger.LogInformation("Got user {userName} permissions: {permissions}", user.UserName, userPermissions.Select(up => up.FullName));
+
+            return userPermissions;
+        }
+
         public bool IsUserAuthorized(IUser user, PermissionAccessPolicy permissionAccessPolicy)
         {
             _logger.LogInformation("Authorizing user {userName} for {permission}", user.UserName, permissionAccessPolicy.PermissionMainName);
 
-            var allRoles = _roleProvider.GetAvailableRoles();
-            var userRoles = allRoles.Intersect(user.Roles);
-            var userPermissions = userRoles.SelectMany(ur => _permissionProvider.GetPermissionsForRole(ur));
-
-            _logger.LogInformation("User {userName} permissions {permissions}", user.UserName, userPermissions.Select(up => up.FullName));
+            var userPermissions = GetUserPermissions(user);
 
             var matchingUserPermissions = userPermissions.Where(up => up.HasMainNameEqualTo(permissionAccessPolicy.PermissionMainName));
             var hasRequiredPermission = matchingUserPermissions.Any();
