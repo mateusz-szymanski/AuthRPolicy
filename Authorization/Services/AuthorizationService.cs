@@ -10,19 +10,16 @@ namespace Authorization.Services
 {
     class AuthorizationService : IAuthorizationService
     {
-        private readonly IRoleProvider _roleProvider;
-        private readonly IPermissionProvider _permissionProvider;
         private readonly ILogger<AuthorizationService> _logger;
+        private readonly IRoleProvider _roleProvider;
         private readonly IServiceProvider _serviceProvider;
 
         public AuthorizationService(
-            IRoleProvider roleProvider,
-            IPermissionProvider permissionProvider,
             ILogger<AuthorizationService> logger,
+            IRoleProvider roleProvider,
             IServiceProvider serviceProvider)
         {
             _roleProvider = roleProvider;
-            _permissionProvider = permissionProvider;
             _logger = logger;
             _serviceProvider = serviceProvider;
         }
@@ -32,7 +29,7 @@ namespace Authorization.Services
         {
             var allRoles = _roleProvider.GetAvailableRoles();
             var userRoles = allRoles.Intersect(user.Roles);
-            var userPermissions = userRoles.SelectMany(ur => _permissionProvider.GetPermissionsForRole(ur)).Distinct();
+            var userPermissions = userRoles.SelectMany(ur => _roleProvider.GetPermissionsForRole(ur)).Distinct();
 
             _logger.LogInformation("Got user {userName} permissions: {permissions}", user.UserName, userPermissions.Select(up => up.FullName));
 

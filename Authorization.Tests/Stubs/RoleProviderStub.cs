@@ -1,26 +1,16 @@
-﻿using Authorization.Roles;
-using System.Collections.Generic;
+﻿using Authorization.Permissions;
+using Authorization.Roles;
+using Authorization.Tests.Sample;
 
 namespace Authorization.Tests.Stubs
 {
-    internal class RoleProviderStub : IRoleProvider
+    internal class RoleProviderStub : DefaultRoleProvider
     {
-        private readonly List<Role> _roles;
-
-        public RoleProviderStub()
+        public new RoleProviderStub AddRole(Role role, params IPermission[] permissions)
         {
-            _roles = new();
-        }
+            base.AddRole(role, permissions);
 
-        public RoleProviderStub WithRoles(params Role[] roles)
-        {
-            _roles.AddRange(roles);
             return this;
-        }
-
-        public IEnumerable<Role> GetAvailableRoles()
-        {
-            return _roles;
         }
     }
 }

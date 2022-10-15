@@ -22,14 +22,11 @@ namespace Authorization.Tests.Tests.Services
         {
             // Arrange
             var role1 = new Role("my-role-1");
-            var roleProviderStub = new RoleProviderStub()
-                .WithRoles(role1);
-
             var actionPermission = new Permission<AccessPolicy1Stub>("my-permission-1");
             var userPermission = new Permission<AccessPolicy1Stub>("my-permission-2");
 
-            var permissionProviderStub = new PermissionProviderStub()
-                .WithRole(role1, userPermission);
+            var roleProviderStub = new RoleProviderStub()
+                .AddRole(role1, userPermission);
 
             var userMock = new Mock<IUser>();
             userMock.Setup(u => u.UserName).Returns("my-username");
@@ -49,7 +46,6 @@ namespace Authorization.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IPermissionProvider>(permissionProviderStub)
                 .AddSingleton<IRoleProvider>(roleProviderStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy1Stub>>(accessPolicy1CheckerStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy2Stub>>(accessPolicy2CheckerStub);
@@ -75,14 +71,11 @@ namespace Authorization.Tests.Tests.Services
         {
             // Arrange
             var role1 = new Role("my-role-1");
-            var roleProviderStub = new RoleProviderStub()
-                .WithRoles(role1);
-
             var actionPermission = new Permission<AccessPolicy1Stub>("my-permission-1");
             var userPermission = new Permission<AccessPolicy1Stub>("my-permission-2");
 
-            var permissionProviderStub = new PermissionProviderStub()
-                .WithRole(role1, userPermission);
+            var roleProviderStub = new RoleProviderStub()
+                .AddRole(role1, userPermission);
 
             var userMock = new Mock<IUser>();
             userMock.Setup(u => u.UserName).Returns("my-username");
@@ -102,7 +95,6 @@ namespace Authorization.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IPermissionProvider>(permissionProviderStub)
                 .AddSingleton<IRoleProvider>(roleProviderStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy1Stub>>(accessPolicy1CheckerStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy2Stub>>(accessPolicy2CheckerStub);
@@ -124,13 +116,9 @@ namespace Authorization.Tests.Tests.Services
         {
             // Arrange
             var role1 = new Role("my-role-1");
-            var roleProviderStub = new RoleProviderStub()
-                .WithRoles(role1);
-
             var permission = new Permission<AccessPolicy1Stub>("my-permission-1");
-
-            var permissionProviderStub = new PermissionProviderStub()
-                .WithRole(role1, permission);
+            var roleProviderStub = new RoleProviderStub()
+                .AddRole(role1, permission);
 
             var userMock = new Mock<IUser>();
             userMock.Setup(u => u.UserName).Returns("my-username");
@@ -150,7 +138,6 @@ namespace Authorization.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IPermissionProvider>(permissionProviderStub)
                 .AddSingleton<IRoleProvider>(roleProviderStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy1Stub>>(accessPolicy1CheckerStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy2Stub>>(accessPolicy2CheckerStub);
@@ -172,17 +159,14 @@ namespace Authorization.Tests.Tests.Services
         {
             // Arrange
             var role1 = new Role("my-role-1");
-            var roleProviderStub = new RoleProviderStub()
-                .WithRoles(role1);
-
             var permissionMainName = "my-permission";
 
             var permission1 = new Permission<AccessPolicy1Stub>(permissionMainName, "1");
             var permission2 = new Permission<AccessPolicy2Stub>(permissionMainName, "2");
             var permission3 = new Permission<AccessPolicy3Stub>(permissionMainName, "3");
 
-            var permissionProviderStub = new PermissionProviderStub()
-                .WithRole(role1, permission1);
+            var roleProviderStub = new RoleProviderStub()
+                .AddRole(role1, permission1);
 
             var userMock = new Mock<IUser>();
             userMock.Setup(u => u.UserName).Returns("my-username");
@@ -206,7 +190,6 @@ namespace Authorization.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IPermissionProvider>(permissionProviderStub)
                 .AddSingleton<IRoleProvider>(roleProviderStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy1Stub>>(accessPolicy1CheckerStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy2Stub>>(accessPolicy2CheckerStub)
@@ -229,17 +212,14 @@ namespace Authorization.Tests.Tests.Services
         {
             // Arrange
             var role1 = new Role("my-role-1");
-            var roleProviderStub = new RoleProviderStub()
-                .WithRoles(role1);
-
             var permissionMainName = "my-permission";
 
             var permission1 = new Permission<AccessPolicy1Stub>(permissionMainName, "1");
             var permission2 = new Permission<AccessPolicy2Stub>(permissionMainName, "2");
             var permission3 = new Permission<AccessPolicy3Stub>(permissionMainName, "3");
 
-            var permissionProviderStub = new PermissionProviderStub()
-                .WithRole(role1, permission1, permission2, permission3);
+            var roleProviderStub = new RoleProviderStub()
+                .AddRole(role1, permission1, permission2, permission3);
 
             var userMock = new Mock<IUser>();
             userMock.Setup(u => u.UserName).Returns("my-username");
@@ -263,7 +243,6 @@ namespace Authorization.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IPermissionProvider>(permissionProviderStub)
                 .AddSingleton<IRoleProvider>(roleProviderStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy1Stub>>(accessPolicy1CheckerStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy2Stub>>(accessPolicy2CheckerStub)
@@ -286,13 +265,10 @@ namespace Authorization.Tests.Tests.Services
         {
             // Arrange
             var role1 = new Role("my-role-1");
-            var roleProviderStub = new RoleProviderStub()
-                .WithRoles(role1);
-
             var permission1 = new Permission<AccessPolicy1Stub>("my-permission-1");
 
-            var permissionProviderStub = new PermissionProviderStub()
-                .WithRole(role1, permission1);
+            var roleProviderStub = new RoleProviderStub()
+                .AddRole(role1, permission1);
 
             var userMock = new Mock<IUser>();
             userMock.Setup(u => u.UserName).Returns("my-username");
@@ -308,7 +284,6 @@ namespace Authorization.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IPermissionProvider>(permissionProviderStub)
                 .AddSingleton<IRoleProvider>(roleProviderStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy1Stub>>(accessPolicy1CheckerStub);
 
@@ -337,17 +312,14 @@ namespace Authorization.Tests.Tests.Services
         {
             // Arrange
             var role1 = new Role("my-role-1");
-            var roleProviderStub = new RoleProviderStub()
-                .WithRoles(role1);
-
             var permissionMainName = "my-permission";
 
             var permission1 = new Permission<AccessPolicy1Stub>(permissionMainName, "1");
             var permission2 = new Permission<AccessPolicy2Stub>(permissionMainName, "2");
             var permission3 = new Permission<AccessPolicy3Stub>(permissionMainName, "3");
 
-            var permissionProviderStub = new PermissionProviderStub()
-                .WithRole(role1, permission1, permission2, permission3);
+            var roleProviderStub = new RoleProviderStub()
+                .AddRole(role1, permission1, permission2, permission3);
 
             var userMock = new Mock<IUser>();
             userMock.Setup(u => u.UserName).Returns("my-username");
@@ -371,7 +343,6 @@ namespace Authorization.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IPermissionProvider>(permissionProviderStub)
                 .AddSingleton<IRoleProvider>(roleProviderStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy1Stub>>(accessPolicy1CheckerStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy2Stub>>(accessPolicy2CheckerStub)
