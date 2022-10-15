@@ -6,12 +6,12 @@ using System.Linq;
 
 namespace Authorization.Tests.Sample
 {
-    public abstract class DefaultRoleProvider : IRoleProvider
+    public abstract class AbstractRoleProvider : IRoleProvider
     {
         private readonly Dictionary<Role, HashSet<IPermission>> _roleToPermissions;
         private readonly Dictionary<IPermission, HashSet<IPermission>> _permissionToAdditionalPermissions;
 
-        public DefaultRoleProvider()
+        public AbstractRoleProvider()
         {
             _roleToPermissions = new();
             _permissionToAdditionalPermissions = new();

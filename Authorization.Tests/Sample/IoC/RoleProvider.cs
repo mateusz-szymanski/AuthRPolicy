@@ -2,7 +2,7 @@
 
 namespace Authorization.Tests.Sample.IoC
 {
-    public class RoleProvider : DefaultRoleProvider
+    public class RoleProvider : AbstractRoleProvider
     {
         public RoleProvider()
         {

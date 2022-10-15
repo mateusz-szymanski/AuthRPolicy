@@ -4,7 +4,7 @@ using Authorization.Tests.Sample;
 
 namespace Authorization.Tests.Stubs
 {
-    internal class RoleProviderStub : DefaultRoleProvider
+    internal class RoleProviderStub : AbstractRoleProvider
     {
         public new RoleProviderStub AddRole(Role role, params IPermission[] permissions)
         {

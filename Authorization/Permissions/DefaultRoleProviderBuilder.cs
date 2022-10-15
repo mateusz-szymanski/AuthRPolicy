@@ -3,7 +3,7 @@ using Authorization.Roles;
 
 namespace Authorization.Tests.Sample
 {
-    class DefaultRoleProviderBuilder : DefaultRoleProvider, IRoleProviderBuilder
+    class DefaultRoleProviderBuilder : AbstractRoleProvider, IRoleProviderBuilder
     {
         void IRoleProviderBuilder.AddRole(Role role, params IPermission[] permissions)
         {
