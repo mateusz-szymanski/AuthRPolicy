@@ -9,6 +9,6 @@ namespace AuthRPolicy.Core.IoC
     public class AuthorizationOptions
     {
         public IEnumerable<Assembly> Assemblies { get; set; } = Enumerable.Empty<Assembly>();
-        public IRoleProviderBuilder RolesBuilder { get; } = new DefaultRoleProviderBuilder();
+        public IRoleProviderBuilder RolesBuilder { get; } = new DefaultRoleProvider();
     }
 }

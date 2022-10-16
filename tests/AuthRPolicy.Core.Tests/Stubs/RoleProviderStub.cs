@@ -3,7 +3,7 @@ using AuthRPolicy.Core.Roles;
 
 namespace AuthRPolicy.Core.Tests.Stubs
 {
-    internal class RoleProviderStub : AbstractRoleProvider
+    internal class RoleProviderStub : DefaultRoleProvider
     {
         public new RoleProviderStub AddRole(Role role, params IPermission[] permissions)
         {

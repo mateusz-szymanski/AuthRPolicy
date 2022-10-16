@@ -3,7 +3,7 @@ using AuthRPolicy.Core.Tests.Sample.AccessPolicies.DocumentPermissions;
 
 namespace AuthRPolicy.Core.Tests.Sample.IoC
 {
-    public class RoleProvider : AbstractRoleProvider
+    public class RoleProvider : DefaultRoleProvider
     {
         public RoleProvider()
         {
