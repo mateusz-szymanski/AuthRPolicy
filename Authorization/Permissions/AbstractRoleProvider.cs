@@ -46,17 +46,22 @@ namespace Authorization.Permissions
 
         public IEnumerable<IPermission> GetPermissionsForRole(Role role)
         {
-            var explicitPermissions = _roleToPermissions.GetValueOrDefault(role) ?? new();
+            var permissionsAddedToRole = _roleToPermissions.GetValueOrDefault(role) ?? new();
+            var permissionsToIterate = new Stack<IPermission>(permissionsAddedToRole);
 
             var allAssignedPermissions = new HashSet<IPermission>();
-            foreach (var explicitPermission in explicitPermissions)
+            while (permissionsToIterate.Any())
             {
-                allAssignedPermissions.Add(explicitPermission);
+                var permission = permissionsToIterate.Pop();
+                allAssignedPermissions.Add(permission);
 
-                var implicitlyAddedPermissions = _permissionToAdditionalPermissions.GetValueOrDefault(explicitPermission) ?? new();
-                foreach (var implicitlyAddedPermission in implicitlyAddedPermissions)
+                var additionalPermissions = _permissionToAdditionalPermissions.GetValueOrDefault(permission) ?? new();
+                foreach (var additionalPermission in additionalPermissions)
                 {
-                    allAssignedPermissions.Add(implicitlyAddedPermission);
+                    if (allAssignedPermissions.Contains(additionalPermission))
+                        continue;
+
+                    permissionsToIterate.Push(additionalPermission);
                 }
             }
 

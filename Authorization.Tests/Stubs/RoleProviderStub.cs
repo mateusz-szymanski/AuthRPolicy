@@ -11,5 +11,11 @@ namespace Authorization.Tests.Stubs
 
             return this;
         }
+        public new RoleProviderStub ConnectPermissions(IPermission permission, params IPermission[] additionalPermissions)
+        {
+            base.ConnectPermissions(permission, additionalPermissions);
+
+            return this;
+        }
     }
 }

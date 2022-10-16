@@ -24,7 +24,6 @@ namespace Authorization.Services
             _serviceProvider = serviceProvider;
         }
 
-        // TODO: tests
         public IEnumerable<IPermission> GetUserPermissions(IUser user)
         {
             var allRoles = _roleProvider.GetAvailableRoles();
