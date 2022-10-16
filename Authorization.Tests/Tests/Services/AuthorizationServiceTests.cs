@@ -526,6 +526,9 @@ namespace Authorization.Tests.Tests.Services
             AssertPermission.Equal(expectedPermissions, actualPermissions);
         }
 
+
+        // TODO: Some of the tests are for AbstractRoleProvider, not AuthorizationService.
+        // TODO: Add other roles to the system to make sure that the serivce is not taking all that exists
         [Fact]
         public async Task GetUserPermissions_ShouldReturnPermissions_GivenUserWithTwoRolesAndConnectedPermissions()
         {
