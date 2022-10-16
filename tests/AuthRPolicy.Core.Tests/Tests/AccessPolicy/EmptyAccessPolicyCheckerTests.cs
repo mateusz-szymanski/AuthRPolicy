@@ -13,7 +13,7 @@ namespace AuthRPolicy.Core.Tests.Tests.AccessPolicy
         [InlineData("", new string[0])]
         [InlineData("my-username", new[] { "role-1" })]
         [InlineData("my-username", new[] { "role-1", "role-2" })]
-        public void HasAccess_ShouldReturnTrue_GivenUserWithNoRoles(string userName, IEnumerable<string> roles)
+        public void HasAccess_ShouldReturnTrue_GivenAnyUser(string userName, IEnumerable<string> roles)
         {
             // Arrange
             var userMock = new Mock<IUser>();
