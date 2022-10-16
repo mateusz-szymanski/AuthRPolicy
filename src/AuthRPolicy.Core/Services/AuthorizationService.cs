@@ -30,7 +30,7 @@ namespace AuthRPolicy.Core.Services
             var userRoles = allRoles.Intersect(user.Roles);
             var userPermissions = userRoles.SelectMany(ur => _roleProvider.GetPermissionsForRole(ur)).Distinct();
 
-            _logger.LogInformation("Got user {userName} permissions: {permissions}", user.UserName, userPermissions.Select(up => up.FullName));
+            _logger.LogInformation("User {userName} permissions: {permissions}", user.UserName, userPermissions.Select(up => up.FullName));
 
             return userPermissions;
         }
