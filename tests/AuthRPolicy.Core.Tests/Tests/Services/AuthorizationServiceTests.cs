@@ -26,7 +26,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             // Arrange
             var actionPermission = new Permission<AccessPolicy1Stub>("my-permission-1");
 
-            var roleProviderStub = new RoleProviderStub();
+            var defaultRoleProvider = new DefaultRoleProvider();
 
             var userMock = new Mock<IUser>();
             userMock.Setup(u => u.UserName).Returns("my-username");
@@ -46,7 +46,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IRoleProvider>(roleProviderStub)
+                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build())
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy1Stub>>(accessPolicy1CheckerStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy2Stub>>(accessPolicy2CheckerStub);
 
@@ -74,7 +74,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var actionPermission = new Permission<AccessPolicy1Stub>("my-permission-1");
             var userPermission = new Permission<AccessPolicy1Stub>("my-permission-2");
 
-            var roleProviderStub = new RoleProviderStub()
+            var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, userPermission);
 
             var userMock = new Mock<IUser>();
@@ -95,7 +95,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IRoleProvider>(roleProviderStub)
+                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build())
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy1Stub>>(accessPolicy1CheckerStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy2Stub>>(accessPolicy2CheckerStub);
 
@@ -117,7 +117,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             // Arrange
             var role1 = new Role("my-role-1");
             var permission = new Permission<AccessPolicy1Stub>("my-permission-1");
-            var roleProviderStub = new RoleProviderStub()
+            var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, permission);
 
             var userMock = new Mock<IUser>();
@@ -138,7 +138,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IRoleProvider>(roleProviderStub)
+                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build())
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy1Stub>>(accessPolicy1CheckerStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy2Stub>>(accessPolicy2CheckerStub);
 
@@ -165,7 +165,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permission2 = new Permission<AccessPolicy2Stub>(permissionMainName, "2");
             var permission3 = new Permission<AccessPolicy3Stub>(permissionMainName, "3");
 
-            var roleProviderStub = new RoleProviderStub()
+            var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, permission1);
 
             var userMock = new Mock<IUser>();
@@ -190,7 +190,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IRoleProvider>(roleProviderStub)
+                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build())
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy1Stub>>(accessPolicy1CheckerStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy2Stub>>(accessPolicy2CheckerStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy3Stub>>(accessPolicy3CheckerStub);
@@ -218,7 +218,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permission2 = new Permission<AccessPolicy2Stub>(permissionMainName, "2");
             var permission3 = new Permission<AccessPolicy3Stub>(permissionMainName, "3");
 
-            var roleProviderStub = new RoleProviderStub()
+            var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, permission1, permission2, permission3);
 
             var userMock = new Mock<IUser>();
@@ -243,7 +243,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IRoleProvider>(roleProviderStub)
+                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build())
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy1Stub>>(accessPolicy1CheckerStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy2Stub>>(accessPolicy2CheckerStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy3Stub>>(accessPolicy3CheckerStub);
@@ -267,7 +267,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var role1 = new Role("my-role-1");
             var permission1 = new Permission<AccessPolicy1Stub>("my-permission-1");
 
-            var roleProviderStub = new RoleProviderStub()
+            var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, permission1);
 
             var userMock = new Mock<IUser>();
@@ -284,7 +284,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IRoleProvider>(roleProviderStub)
+                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build())
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy1Stub>>(accessPolicy1CheckerStub);
 
             await using var serviceProvider = serviceCollection.BuildServiceProvider();
@@ -318,7 +318,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permission2 = new Permission<AccessPolicy2Stub>(permissionMainName, "2");
             var permission3 = new Permission<AccessPolicy3Stub>(permissionMainName, "3");
 
-            var roleProviderStub = new RoleProviderStub()
+            var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, permission1, permission2, permission3);
 
             var userMock = new Mock<IUser>();
@@ -343,7 +343,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IRoleProvider>(roleProviderStub)
+                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build())
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy1Stub>>(accessPolicy1CheckerStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy2Stub>>(accessPolicy2CheckerStub)
                 .AddSingleton<IAccessPolicyChecker<AccessPolicy3Stub>>(accessPolicy3CheckerStub);
@@ -365,12 +365,12 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
         #region GetUserPermissions
 
         [Fact]
-        public async Task GetUserPermissions_ShouldReturnEmptyList_GivenUserWithoutAnyPermission()
+        public async Task GetUserPermissions_ShouldReturnEmptyList_GivenUserWithRoleWithoutAnyPermission()
         {
             // Arrange
             var userRole = new Role("my-role-1");
 
-            var roleProviderStub = new RoleProviderStub()
+            var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(userRole);
 
             var userMock = new Mock<IUser>();
@@ -381,7 +381,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IRoleProvider>(roleProviderStub);
+                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build());
 
             await using var serviceProvider = serviceCollection.BuildServiceProvider();
             await using var serviceScope = serviceProvider.CreateAsyncScope();
@@ -402,7 +402,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var userRole = new Role("my-role-1");
             var otherRole = new Role("my-role-2");
 
-            var roleProviderStub = new RoleProviderStub()
+            var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(otherRole);
 
             var userMock = new Mock<IUser>();
@@ -413,7 +413,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IRoleProvider>(roleProviderStub);
+                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build());
 
             await using var serviceProvider = serviceCollection.BuildServiceProvider();
             await using var serviceScope = serviceProvider.CreateAsyncScope();
@@ -437,7 +437,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permission3 = new Permission<EmptyAccessPolicy>("my-permission-3");
             var permission4 = new Permission<EmptyAccessPolicy>("my-permission-1");
 
-            var roleProviderStub = new RoleProviderStub()
+            var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(userRole, permission1, permission2, permission3, permission4);
 
             var userMock = new Mock<IUser>();
@@ -448,7 +448,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IRoleProvider>(roleProviderStub);
+                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build());
 
             await using var serviceProvider = serviceCollection.BuildServiceProvider();
             await using var serviceScope = serviceProvider.CreateAsyncScope();
@@ -491,7 +491,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
                 permission1
             };
 
-            var roleProviderStub = new RoleProviderStub()
+            var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, role1Permissions)
                 .AddRole(role2, role2Permissions);
 
@@ -503,7 +503,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IRoleProvider>(roleProviderStub);
+                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build());
 
             await using var serviceProvider = serviceCollection.BuildServiceProvider();
             await using var serviceScope = serviceProvider.CreateAsyncScope();
@@ -558,7 +558,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
                 permission1
             };
 
-            var roleProviderStub = new RoleProviderStub()
+            var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, role1Permissions)
                 .AddRole(role2, role2Permissions)
                 .ConnectPermissions(permission1, permission6, permission7)
@@ -574,7 +574,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IRoleProvider>(roleProviderStub);
+                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build());
 
             await using var serviceProvider = serviceCollection.BuildServiceProvider();
             await using var serviceScope = serviceProvider.CreateAsyncScope();
@@ -620,7 +620,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
                 permission3
             };
 
-            var roleProviderStub = new RoleProviderStub()
+            var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, role1Permissions)
                 .AddRole(role2, role2Permissions)
                 .ConnectPermissions(permission1, permission2, permission3)
@@ -634,7 +634,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
                 .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IRoleProvider>(roleProviderStub);
+                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build());
 
             await using var serviceProvider = serviceCollection.BuildServiceProvider();
             await using var serviceScope = serviceProvider.CreateAsyncScope();
