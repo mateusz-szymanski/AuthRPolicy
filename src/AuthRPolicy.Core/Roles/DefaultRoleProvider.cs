@@ -22,7 +22,7 @@ namespace AuthRPolicy.Core.Roles
         /// <param name="role">Role.</param>
         /// <param name="permissions">Permissions assigned to the role.</param>
         /// <exception cref="RoleAlreadyAddedException">Given role is added for the second time.</exception>
-        /// <returns>Builder</returns>
+        /// <returns>Builder.</returns>
         public IDefaultRoleProviderBuilder AddRole(Role role, params IPermission[] permissions)
         {
             if (_roleToPermissions.ContainsKey(role))
@@ -33,15 +33,13 @@ namespace AuthRPolicy.Core.Roles
             return this;
         }
 
-
         /// <summary>
         /// Connect permissions. Every role that contains given permission will also have additionalPermissions.
         /// </summary>
         /// <param name="permission">Permission.</param>
-        /// <param name="permissionsToBeAdded">Additional permissions for given permission.</param>
+        /// <param name="additionalPermissions">Additional permissions for given permission.</param>
         /// <exception cref="PermissionAlreadyConnectedException">Given permission is added for the second time.</exception>
-        /// <summary>
-        /// <returns>Builder</returns>
+        /// <returns>Builder.</returns>
         public IDefaultRoleProviderBuilder ConnectPermissions(IPermission permission, params IPermission[] additionalPermissions)
         {
             if (_permissionToAdditionalPermissions.ContainsKey(permission))
