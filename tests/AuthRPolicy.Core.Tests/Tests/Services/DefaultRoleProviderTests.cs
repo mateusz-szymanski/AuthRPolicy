@@ -117,14 +117,17 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
 
         #region GetPermissionsForRole
 
-        // TODO: add roles that are not used
-
         [Fact]
         public void GetPermissionsForRole_ShouldReturnEmptyList_GivenUnknownRole()
         {
             // Arrange
             var role1 = new Role("my-role-1");
+
+            var otherRole1 = new Role("other-role-1");
+            var otherPermission1 = new Permission<EmptyAccessPolicy>("other-permission-1");
+
             var defaultRoleProvider = new DefaultRoleProvider();
+            defaultRoleProvider.AddRole(otherRole1, otherPermission1);
 
             // Act
             var permissions = defaultRoleProvider.GetPermissionsForRole(role1);
@@ -138,7 +141,12 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
         {
             // Arrange
             var role1 = new Role("my-role-1");
+
+            var otherRole1 = new Role("other-role-1");
+            var otherPermission1 = new Permission<EmptyAccessPolicy>("other-permission-1");
+
             var defaultRoleProvider = new DefaultRoleProvider();
+            defaultRoleProvider.AddRole(otherRole1, otherPermission1);
             defaultRoleProvider.AddRole(role1);
 
             // Act
@@ -155,7 +163,11 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var role1 = new Role("my-role-1");
             var permission1 = new Permission<EmptyAccessPolicy>("my-permission-1");
 
+            var otherRole1 = new Role("other-role-1");
+            var otherPermission1 = new Permission<EmptyAccessPolicy>("other-permission-1");
+
             var defaultRoleProvider = new DefaultRoleProvider();
+            defaultRoleProvider.AddRole(otherRole1, otherPermission1);
             defaultRoleProvider.AddRole(role1, permission1);
 
             // Act
@@ -174,7 +186,11 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permission1 = new Permission<EmptyAccessPolicy>("my-permission-1");
             var permission2 = new Permission<EmptyAccessPolicy>("my-permission-2");
 
+            var otherRole1 = new Role("other-role-1");
+            var otherPermission1 = new Permission<EmptyAccessPolicy>("other-permission-1");
+
             var defaultRoleProvider = new DefaultRoleProvider();
+            defaultRoleProvider.AddRole(otherRole1, otherPermission1);
             defaultRoleProvider.AddRole(role1, permission1, permission2);
 
             // Act
@@ -202,7 +218,12 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permission5 = new Permission<EmptyAccessPolicy>("my-permission-5");
             var permission6 = new Permission<EmptyAccessPolicy>("my-permission-6");
 
+            var otherRole1 = new Role("other-role-1");
+            var otherPermission1 = new Permission<EmptyAccessPolicy>("other-permission-1");
+
             var defaultRoleProvider = new DefaultRoleProvider();
+            defaultRoleProvider.AddRole(otherRole1, otherPermission1);
+
             defaultRoleProvider.AddRole(role1, permission1, permission2);
             defaultRoleProvider.ConnectPermissions(permission1, permission3, permission4);
             defaultRoleProvider.ConnectPermissions(permission2, permission5, permission6);
@@ -239,7 +260,12 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permission8 = new Permission<EmptyAccessPolicy>("my-permission-8");
             var permission9 = new Permission<EmptyAccessPolicy>("my-permission-9");
 
+            var otherRole1 = new Role("other-role-1");
+            var otherPermission1 = new Permission<EmptyAccessPolicy>("other-permission-1");
+
             var defaultRoleProvider = new DefaultRoleProvider();
+            defaultRoleProvider.AddRole(otherRole1, otherPermission1);
+
             defaultRoleProvider.AddRole(role1, permission1, permission2);
             defaultRoleProvider.ConnectPermissions(permission1, permission3, permission4);
             defaultRoleProvider.ConnectPermissions(permission2, permission5);
@@ -282,7 +308,12 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permission8 = new Permission<EmptyAccessPolicy>("my-permission-8");
             var permission9 = new Permission<EmptyAccessPolicy>("my-permission-9");
 
+            var otherRole1 = new Role("other-role-1");
+            var otherPermission1 = new Permission<EmptyAccessPolicy>("other-permission-1");
+
             var defaultRoleProvider = new DefaultRoleProvider();
+            defaultRoleProvider.AddRole(otherRole1, otherPermission1);
+
             defaultRoleProvider.AddRole(role1, permission1, permission2);
             defaultRoleProvider.ConnectPermissions(permission1, permission2, permission3, permission4);
             defaultRoleProvider.ConnectPermissions(permission2, permission5, permission3, permission6);
@@ -319,7 +350,12 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permission2 = new Permission<EmptyAccessPolicy>("my-permission-2");
             var permission3 = new Permission<EmptyAccessPolicy>("my-permission-3");
 
+            var otherRole1 = new Role("other-role-1");
+            var otherPermission1 = new Permission<EmptyAccessPolicy>("other-permission-1");
+
             var defaultRoleProvider = new DefaultRoleProvider();
+            defaultRoleProvider.AddRole(otherRole1, otherPermission1);
+
             defaultRoleProvider.AddRole(role1, permission1);
             defaultRoleProvider.ConnectPermissions(permission1, permission2);
             defaultRoleProvider.ConnectPermissions(permission2, permission3);
