@@ -1,4 +1,4 @@
-﻿using AuthRPolicy.Core.Exceptions;
+﻿using AuthRPolicy.Core.Roles.Exceptions;
 using System.Diagnostics;
 
 namespace AuthRPolicy.Core.Roles

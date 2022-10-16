@@ -1,7 +1,8 @@
-﻿using System;
+﻿using AuthRPolicy.Core.Exceptions;
+using System;
 using System.Runtime.Serialization;
 
-namespace AuthRPolicy.Core.Exceptions
+namespace AuthRPolicy.Core.Permissions.Exceptions
 {
     public class MissingAccessPoliciesForPermissionAccessPolicyException : AuthorizationException
     {

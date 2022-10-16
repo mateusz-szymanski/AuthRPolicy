@@ -1,5 +1,5 @@
-﻿using AuthRPolicy.Core.Exceptions;
-using AuthRPolicy.Core.Roles;
+﻿using AuthRPolicy.Core.Roles;
+using AuthRPolicy.Core.Roles.Exceptions;
 using Xunit;
 
 namespace AuthRPolicy.Core.Tests.Tests.Roles

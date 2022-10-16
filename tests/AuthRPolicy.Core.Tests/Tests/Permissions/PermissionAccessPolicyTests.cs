@@ -1,6 +1,6 @@
 ﻿using AuthRPolicy.Core.AccessPolicy;
-using AuthRPolicy.Core.Exceptions;
 using AuthRPolicy.Core.Permissions;
+using AuthRPolicy.Core.Permissions.Exceptions;
 using Moq;
 using Xunit;
 

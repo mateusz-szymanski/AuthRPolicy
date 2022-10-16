@@ -1,9 +1,9 @@
-﻿using AuthRPolicy.Core.Exceptions;
-using AuthRPolicy.Core.Roles;
+﻿using AuthRPolicy.Core.Permissions;
+using AuthRPolicy.Core.Roles.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AuthRPolicy.Core.Permissions
+namespace AuthRPolicy.Core.Roles
 {
     public class DefaultRoleProvider : IRoleProvider, IDefaultRoleProviderBuilder
     {

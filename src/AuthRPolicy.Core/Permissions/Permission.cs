@@ -1,5 +1,5 @@
 ﻿using AuthRPolicy.Core.AccessPolicy;
-using AuthRPolicy.Core.Exceptions;
+using AuthRPolicy.Core.Permissions.Exceptions;
 using System;
 using System.Diagnostics;
 
@@ -17,7 +17,7 @@ namespace AuthRPolicy.Core.Permissions
         public Permission(string mainName, string subName = "")
         {
             if (string.IsNullOrWhiteSpace(mainName))
-                throw MissingPermissionNameException.New(mainName);
+                throw MissingPermissionNameException.New();
 
             AccessPolicyType = typeof(TAccessPolicy);
             MainName = mainName;

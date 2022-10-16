@@ -1,8 +1,9 @@
-﻿using AuthRPolicy.Core.Permissions;
+﻿using AuthRPolicy.Core.Exceptions;
+using AuthRPolicy.Core.Permissions;
 using System;
 using System.Runtime.Serialization;
 
-namespace AuthRPolicy.Core.Exceptions
+namespace AuthRPolicy.Core.Roles.Exceptions
 {
     public class PermissionAlreadyConnectedException : AuthorizationException
     {

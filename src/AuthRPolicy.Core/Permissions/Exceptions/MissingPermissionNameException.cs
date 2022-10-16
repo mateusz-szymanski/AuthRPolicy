@@ -1,11 +1,12 @@
-﻿using System;
+﻿using AuthRPolicy.Core.Exceptions;
+using System;
 using System.Runtime.Serialization;
 
-namespace AuthRPolicy.Core.Exceptions
+namespace AuthRPolicy.Core.Permissions.Exceptions
 {
     public class MissingPermissionNameException : AuthorizationException
     {
-        public static MissingPermissionNameException New(string permissionMainName)
+        public static MissingPermissionNameException New()
         {
             var message = "Permission must have a name";
             return new MissingPermissionNameException(message);

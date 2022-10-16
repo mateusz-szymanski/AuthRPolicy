@@ -1,7 +1,7 @@
 ﻿using AuthRPolicy.Core.AccessPolicy;
-using AuthRPolicy.Core.Exceptions;
 using AuthRPolicy.Core.Permissions;
 using AuthRPolicy.Core.Roles;
+using AuthRPolicy.Core.Roles.Exceptions;
 using AuthRPolicy.Core.Tests.Assertions;
 using AuthRPolicy.Core.Tests.Stubs;
 using System.Linq;

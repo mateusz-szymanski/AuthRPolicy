@@ -1,4 +1,4 @@
-﻿using AuthRPolicy.Core.Permissions;
+﻿using AuthRPolicy.Core.Roles;
 using AuthRPolicy.Core.Tests.Sample.AccessPolicies.DocumentPermissions;
 
 namespace AuthRPolicy.Core.Tests.Sample.IoC
