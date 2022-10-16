@@ -3,6 +3,7 @@ using AuthRPolicy.Core.Exceptions;
 using AuthRPolicy.Core.Permissions;
 using AuthRPolicy.Core.Roles;
 using AuthRPolicy.Core.Tests.Assertions;
+using AuthRPolicy.Core.Tests.Stubs;
 using System.Linq;
 using Xunit;
 
@@ -184,7 +185,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             // Arrange
             var role1 = new Role("my-role-1");
             var permission1 = new Permission<EmptyAccessPolicy>("my-permission-1");
-            var permission2 = new Permission<EmptyAccessPolicy>("my-permission-2");
+            var permission2 = new Permission<AccessPolicy1Stub>("my-permission-2");
 
             var otherRole1 = new Role("other-role-1");
             var otherPermission1 = new Permission<EmptyAccessPolicy>("other-permission-1");
@@ -197,7 +198,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permissions = defaultRoleProvider.GetPermissionsForRole(role1);
 
             // Assert
-            var expectedPermissions = new[]
+            var expectedPermissions = new IPermission[]
             {
                 permission1,
                 permission2
@@ -212,8 +213,8 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             // Arrange
             var role1 = new Role("my-role-1");
             var permission1 = new Permission<EmptyAccessPolicy>("my-permission-1");
-            var permission2 = new Permission<EmptyAccessPolicy>("my-permission-2");
-            var permission3 = new Permission<EmptyAccessPolicy>("my-permission-3");
+            var permission2 = new Permission<AccessPolicy1Stub>("my-permission-2");
+            var permission3 = new Permission<AccessPolicy2Stub>("my-permission-3");
             var permission4 = new Permission<EmptyAccessPolicy>("my-permission-4");
             var permission5 = new Permission<EmptyAccessPolicy>("my-permission-5");
             var permission6 = new Permission<EmptyAccessPolicy>("my-permission-6");
@@ -232,7 +233,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permissions = defaultRoleProvider.GetPermissionsForRole(role1);
 
             // Assert
-            var expectedPermissions = new[]
+            var expectedPermissions = new IPermission[]
             {
                 permission1,
                 permission2,
@@ -251,11 +252,11 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             // Arrange
             var role1 = new Role("my-role-1");
             var permission1 = new Permission<EmptyAccessPolicy>("my-permission-1");
-            var permission2 = new Permission<EmptyAccessPolicy>("my-permission-2");
-            var permission3 = new Permission<EmptyAccessPolicy>("my-permission-3");
+            var permission2 = new Permission<AccessPolicy1Stub>("my-permission-2");
+            var permission3 = new Permission<AccessPolicy2Stub>("my-permission-3");
             var permission4 = new Permission<EmptyAccessPolicy>("my-permission-4");
-            var permission5 = new Permission<EmptyAccessPolicy>("my-permission-5");
-            var permission6 = new Permission<EmptyAccessPolicy>("my-permission-6");
+            var permission5 = new Permission<AccessPolicy1Stub>("my-permission-5");
+            var permission6 = new Permission<AccessPolicy2Stub>("my-permission-6");
             var permission7 = new Permission<EmptyAccessPolicy>("my-permission-7");
             var permission8 = new Permission<EmptyAccessPolicy>("my-permission-8");
             var permission9 = new Permission<EmptyAccessPolicy>("my-permission-9");
@@ -277,7 +278,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permissions = defaultRoleProvider.GetPermissionsForRole(role1);
 
             // Assert
-            var expectedPermissions = new[]
+            var expectedPermissions = new IPermission[]
             {
                 permission1,
                 permission2,
@@ -299,12 +300,12 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             // Arrange
             var role1 = new Role("my-role-1");
             var permission1 = new Permission<EmptyAccessPolicy>("my-permission-1");
-            var permission2 = new Permission<EmptyAccessPolicy>("my-permission-2");
-            var permission3 = new Permission<EmptyAccessPolicy>("my-permission-3");
+            var permission2 = new Permission<AccessPolicy1Stub>("my-permission-2");
+            var permission3 = new Permission<AccessPolicy2Stub>("my-permission-3");
             var permission4 = new Permission<EmptyAccessPolicy>("my-permission-4");
             var permission5 = new Permission<EmptyAccessPolicy>("my-permission-5");
-            var permission6 = new Permission<EmptyAccessPolicy>("my-permission-6");
-            var permission7 = new Permission<EmptyAccessPolicy>("my-permission-7");
+            var permission6 = new Permission<AccessPolicy1Stub>("my-permission-6");
+            var permission7 = new Permission<AccessPolicy2Stub>("my-permission-7");
             var permission8 = new Permission<EmptyAccessPolicy>("my-permission-8");
             var permission9 = new Permission<EmptyAccessPolicy>("my-permission-9");
 
@@ -325,7 +326,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permissions = defaultRoleProvider.GetPermissionsForRole(role1);
 
             // Assert
-            var expectedPermissions = new[]
+            var expectedPermissions = new IPermission[]
             {
                 permission1,
                 permission2,
@@ -347,7 +348,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             // Arrange
             var role1 = new Role("my-role-1");
             var permission1 = new Permission<EmptyAccessPolicy>("my-permission-1");
-            var permission2 = new Permission<EmptyAccessPolicy>("my-permission-2");
+            var permission2 = new Permission<AccessPolicy1Stub>("my-permission-2");
             var permission3 = new Permission<EmptyAccessPolicy>("my-permission-3");
 
             var otherRole1 = new Role("other-role-1");
@@ -365,7 +366,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permissions = defaultRoleProvider.GetPermissionsForRole(role1);
 
             // Assert
-            var expectedPermissions = new[]
+            var expectedPermissions = new IPermission[]
             {
                 permission1,
                 permission2,
