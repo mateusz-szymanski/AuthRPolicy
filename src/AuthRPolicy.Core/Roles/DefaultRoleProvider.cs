@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace AuthRPolicy.Core.Permissions
 {
-    public class DefaultRoleProvider : IRoleProvider, IRoleProviderBuilder
+    public class DefaultRoleProvider : IRoleProvider, IDefaultRoleProviderBuilder
     {
         private readonly Dictionary<Role, HashSet<IPermission>> _roleToPermissions;
         private readonly Dictionary<IPermission, HashSet<IPermission>> _permissionToAdditionalPermissions;
