@@ -1,6 +1,6 @@
-﻿using AuthRPolicy.Core.MediatRExtensions;
-using AuthRPolicy.Core.Permissions;
+﻿using AuthRPolicy.Core.Permissions;
 using AuthRPolicy.Core.Tests.Sample.AccessPolicies.DocumentPermissions;
+using AuthRPolicy.MediatRExtensions;
 
 namespace AuthRPolicy.Core.Tests.Sample.Commands
 {

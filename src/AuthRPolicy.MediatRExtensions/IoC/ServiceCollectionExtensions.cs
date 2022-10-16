@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace AuthRPolicy.Core.MediatRExtensions.IoC
+namespace AuthRPolicy.MediatRExtensions.IoC
 {
     public static class ServiceCollectionExtensions
     {

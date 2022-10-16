@@ -1,6 +1,6 @@
 ﻿using AuthRPolicy.Core.Permissions;
 
-namespace AuthRPolicy.Core.MediatRExtensions
+namespace AuthRPolicy.MediatRExtensions
 {
     public interface IAuthorizedRequest
     {
