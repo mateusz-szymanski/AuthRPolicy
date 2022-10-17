@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 
 namespace AuthRPolicy.Core.Roles.Exceptions
 {
+    [Serializable]
     public class RoleAlreadyAddedException : AuthorizationException
     {
         public static RoleAlreadyAddedException New(Role role)

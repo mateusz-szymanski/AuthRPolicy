@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace AuthRPolicy.Core.Exceptions
 {
+    [Serializable]
     public class AuthorizationException : Exception
     {
         public AuthorizationException()

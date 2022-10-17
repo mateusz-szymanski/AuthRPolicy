@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 
 namespace AuthRPolicy.Core.Permissions.Exceptions
 {
+    [Serializable]
     public class MissingPermissionNameException : AuthorizationException
     {
         public static MissingPermissionNameException New()

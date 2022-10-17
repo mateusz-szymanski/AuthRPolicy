@@ -37,7 +37,6 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var accessPolicy1CheckerStub = new AccessPolicy1CheckerStub()
                 .ShouldReturn((_, _) => accessPolicy1HasAccess);
 
-            var accessPolicy2Stub = new AccessPolicy2Stub();
             var accessPolicy2CheckerStub = new AccessPolicy2CheckerStub()
                 .ShouldReturn((_, _) => accessPolicy2HasAccess);
 
@@ -86,7 +85,6 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var accessPolicy1CheckerStub = new AccessPolicy1CheckerStub()
                 .ShouldReturn((_, _) => accessPolicy1HasAccess);
 
-            var accessPolicy2Stub = new AccessPolicy2Stub();
             var accessPolicy2CheckerStub = new AccessPolicy2CheckerStub()
                 .ShouldReturn((_, _) => accessPolicy2HasAccess);
 
@@ -129,7 +127,6 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var accessPolicy1CheckerStub = new AccessPolicy1CheckerStub()
                 .ShouldReturn((_, _) => false);
 
-            var accessPolicy2Stub = new AccessPolicy2Stub();
             var accessPolicy2CheckerStub = new AccessPolicy2CheckerStub()
                 .ShouldReturn((_, _) => false);
 
@@ -162,8 +159,6 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permissionMainName = "my-permission";
 
             var permission1 = new Permission<AccessPolicy1Stub>(permissionMainName, "1");
-            var permission2 = new Permission<AccessPolicy2Stub>(permissionMainName, "2");
-            var permission3 = new Permission<AccessPolicy3Stub>(permissionMainName, "3");
 
             var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, permission1);

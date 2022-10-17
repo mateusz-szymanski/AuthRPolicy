@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 
 namespace AuthRPolicy.Core.Roles.Exceptions
 {
+    [Serializable]
     public class PermissionAlreadyConnectedException : AuthorizationException
     {
         public static PermissionAlreadyConnectedException New(IPermission permission)

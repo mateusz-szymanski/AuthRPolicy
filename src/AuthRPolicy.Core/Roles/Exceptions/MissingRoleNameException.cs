@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 
 namespace AuthRPolicy.Core.Roles.Exceptions
 {
+    [Serializable]
     public class MissingRoleNameException : AuthorizationException
     {
         public MissingRoleNameException()
