@@ -437,8 +437,15 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var permission3 = new Permission<EmptyAccessPolicy>("my-permission-3");
             var permission4 = new Permission<EmptyAccessPolicy>("my-permission-1");
 
+            var anotherRole = new Role("other-role-1");
+            var otherPermission1 = new Permission<EmptyAccessPolicy>("other-permission-1");
+            var otherPermission2 = new Permission<EmptyAccessPolicy>("other-permission-2");
+            var otherPermission3 = new Permission<EmptyAccessPolicy>("other-permission-3");
+            var otherPermission4 = new Permission<EmptyAccessPolicy>("other-permission-1");
+
             var defaultRoleProvider = new DefaultRoleProvider()
-                .AddRole(userRole, permission1, permission2, permission3, permission4);
+                .AddRole(userRole, permission1, permission2, permission3, permission4)
+                .AddRole(anotherRole, otherPermission1, otherPermission2, otherPermission3, otherPermission4);
 
             var userMock = new Mock<IUser>();
             userMock.Setup(u => u.UserName).Returns("my-username");
@@ -526,136 +533,6 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             AssertPermission.Equal(expectedPermissions, actualPermissions);
         }
 
-
-        // TODO: Some of the tests are for AbstractRoleProvider, not AuthorizationService.
-        // TODO: Add other roles to the system to make sure that the serivce is not taking all that exists
-        [Fact]
-        public async Task GetUserPermissions_ShouldReturnPermissions_GivenUserWithTwoRolesAndConnectedPermissions()
-        {
-            // Arrange
-            var role1 = new Role("my-role-1");
-            var permission1 = new Permission<EmptyAccessPolicy>("my-permission-1");
-            var permission2 = new Permission<EmptyAccessPolicy>("my-permission-2");
-            var permission3 = new Permission<AccessPolicy1Stub>("my-permission-3");
-            var permission4 = new Permission<AccessPolicy2Stub>("my-permission-4");
-            var permission5 = new Permission<EmptyAccessPolicy>("my-permission-5");
-            var permission6 = new Permission<EmptyAccessPolicy>("my-permission-6");
-            var permission7 = new Permission<AccessPolicy2Stub>("my-permission-7");
-            var permission8 = new Permission<AccessPolicy1Stub>("my-permission-8");
-            var permission9 = new Permission<EmptyAccessPolicy>("my-permission-9");
-            var permission10 = new Permission<EmptyAccessPolicy>("my-permission-10");
-
-            var role1Permissions = new IPermission[] {
-                permission1,
-                permission2,
-                permission3
-            };
-            var role2 = new Role("my-role-2");
-            var role2Permissions = new IPermission[] {
-                permission5,
-                permission4,
-                permission3,
-                permission1
-            };
-
-            var defaultRoleProvider = new DefaultRoleProvider()
-                .AddRole(role1, role1Permissions)
-                .AddRole(role2, role2Permissions)
-                .ConnectPermissions(permission1, permission6, permission7)
-                .ConnectPermissions(permission7, permission8)
-                .ConnectPermissions(permission8, permission9)
-                .ConnectPermissions(permission9, permission10);
-
-            var userMock = new Mock<IUser>();
-            userMock.Setup(u => u.UserName).Returns("my-username");
-            userMock.Setup(u => u.Roles).Returns(new[] { role1, role2 });
-            var user = userMock.Object;
-
-            var serviceCollection = new ServiceCollection()
-                .AddNullLogger()
-                .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build());
-
-            await using var serviceProvider = serviceCollection.BuildServiceProvider();
-            await using var serviceScope = serviceProvider.CreateAsyncScope();
-
-            var authorizationService = serviceScope.ServiceProvider.GetRequiredService<IAuthorizationService>();
-
-            // Act
-            var actualPermissions = authorizationService.GetUserPermissions(user);
-
-            // Assert
-            var expectedPermissions = new IPermission[]
-            {
-                permission1,
-                permission2,
-                permission3,
-                permission4,
-                permission5,
-                permission6,
-                permission7,
-                permission8,
-                permission9,
-                permission10
-            };
-
-            AssertPermission.Equal(expectedPermissions, actualPermissions);
-        }
-
-        [Fact]
-        public async Task GetUserPermissions_ShouldReturnPermissions_GivenUserWithTwoRolesAndCircularConnectedPermissions()
-        {
-            // Arrange
-            var role1 = new Role("my-role-1");
-            var permission1 = new Permission<EmptyAccessPolicy>("my-permission-1");
-            var permission2 = new Permission<EmptyAccessPolicy>("my-permission-2");
-            var permission3 = new Permission<AccessPolicy1Stub>("my-permission-3");
-
-            var role1Permissions = new IPermission[] {
-                permission1,
-                permission2,
-            };
-            var role2 = new Role("my-role-2");
-            var role2Permissions = new IPermission[] {
-                permission3
-            };
-
-            var defaultRoleProvider = new DefaultRoleProvider()
-                .AddRole(role1, role1Permissions)
-                .AddRole(role2, role2Permissions)
-                .ConnectPermissions(permission1, permission2, permission3)
-                .ConnectPermissions(permission2, permission1);
-
-            var userMock = new Mock<IUser>();
-            userMock.Setup(u => u.UserName).Returns("my-username");
-            userMock.Setup(u => u.Roles).Returns(new[] { role1, role2 });
-            var user = userMock.Object;
-
-            var serviceCollection = new ServiceCollection()
-                .AddNullLogger()
-                .AddScoped<IAuthorizationService, AuthorizationService>()
-                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build());
-
-            await using var serviceProvider = serviceCollection.BuildServiceProvider();
-            await using var serviceScope = serviceProvider.CreateAsyncScope();
-
-            var authorizationService = serviceScope.ServiceProvider.GetRequiredService<IAuthorizationService>();
-
-            // Act
-            var actualPermissions = authorizationService.GetUserPermissions(user);
-
-            // Assert
-            var expectedPermissions = new IPermission[]
-            {
-                permission1,
-                permission2,
-                permission3
-            };
-
-            AssertPermission.Equal(expectedPermissions, actualPermissions);
-        }
-
         #endregion
-
     }
 }
