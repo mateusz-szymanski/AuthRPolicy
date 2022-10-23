@@ -5,7 +5,7 @@ namespace AuthRPolicy.Core.Roles
     public interface IDefaultRoleProviderBuilder
     {
         /// <summary>
-        /// Connect role with permissions.
+        /// Connects role with permissions.
         /// </summary>
         /// <param name="role">Role.</param>
         /// <param name="permissions">Permissions assigned to the role.</param>
@@ -14,7 +14,7 @@ namespace AuthRPolicy.Core.Roles
         IDefaultRoleProviderBuilder AddRole(Role role, params IPermission[] permissions);
 
         /// <summary>
-        /// Connect permissions. Every role that contains given permission will also have additionalPermissions.
+        /// Connects permissions. Every role that contains given permission will also have additionalPermissions.
         /// </summary>
         /// <param name="permission">Permission.</param>
         /// <param name="additionalPermissions">Additional permissions for given permission.</param>

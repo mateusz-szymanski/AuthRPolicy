@@ -7,7 +7,7 @@ namespace AuthRPolicy.MediatRExtensions.IoC
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// Register per scope AuthorizationBehavior and HttpContextBasedCurrentUserService.
+        /// Registers per scope AuthorizationBehavior and HttpContextBasedCurrentUserService.
         /// </summary>
         /// <param name="services">Service collection.</param>
         /// <returns>Service collection.</returns>
@@ -20,7 +20,7 @@ namespace AuthRPolicy.MediatRExtensions.IoC
         }
 
         /// <summary>
-        /// Register per scope AuthorizationBehavior and custom ICurrentUserService type.
+        /// Registers per scope AuthorizationBehavior and custom ICurrentUserService type.
         /// </summary>
         /// <typeparam name="TCurrentUserService">Custom implementation of ICurrentUserService.</typeparam>
         /// <param name="services">Service collection.</param>
