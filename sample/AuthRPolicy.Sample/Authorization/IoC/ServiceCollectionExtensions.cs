@@ -29,7 +29,9 @@ namespace AuthRPolicy.Sample.Authorization.IoC
 
         public static IServiceCollection AddApplicationAuthorization2(this IServiceCollection services)
         {
-            services.AddAuthorization<RoleProvider>(typeof(ServiceCollectionExtensions).Assembly);
+            services
+                .AddAuthorization<RoleProvider>(typeof(ServiceCollectionExtensions).Assembly)
+                .AddAuthorizationBehavior();
 
             return services;
         }

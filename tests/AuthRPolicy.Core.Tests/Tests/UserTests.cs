@@ -18,7 +18,7 @@ namespace AuthRPolicy.Core.Tests.Tests
 
             // Act
             // Assert
-            Assert.Throws<MissingUserNameException>(() => new User(userName, new Role[0]));
+            Assert.Throws<MissingUserNameException>(() => new User(userName, Enumerable.Empty<Role>()));
         }
 
         [Theory]
