@@ -16,10 +16,6 @@ namespace AuthRPolicy.Core.Roles.Exceptions
         {
         }
 
-        protected MissingRoleNameException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
         protected MissingRoleNameException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

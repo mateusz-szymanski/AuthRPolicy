@@ -17,10 +17,6 @@ namespace AuthRPolicy.Core.IoC.Exceptions
         {
         }
 
-        protected IncorrectAccessPolicyCheckerDefinitionException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
         protected IncorrectAccessPolicyCheckerDefinitionException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

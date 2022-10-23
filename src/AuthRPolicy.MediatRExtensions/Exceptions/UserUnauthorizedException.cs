@@ -17,10 +17,6 @@ namespace AuthRPolicy.MediatRExtensions.Exceptions
         {
         }
 
-        protected UserUnauthorizedException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
         protected UserUnauthorizedException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

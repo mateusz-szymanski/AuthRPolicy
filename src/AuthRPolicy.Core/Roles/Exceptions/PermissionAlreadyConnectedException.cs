@@ -18,10 +18,6 @@ namespace AuthRPolicy.Core.Roles.Exceptions
         {
         }
 
-        protected PermissionAlreadyConnectedException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
         protected PermissionAlreadyConnectedException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

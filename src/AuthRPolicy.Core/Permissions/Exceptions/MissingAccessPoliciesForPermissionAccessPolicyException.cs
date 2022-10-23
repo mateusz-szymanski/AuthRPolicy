@@ -17,10 +17,6 @@ namespace AuthRPolicy.Core.Permissions.Exceptions
         {
         }
 
-        protected MissingAccessPoliciesForPermissionAccessPolicyException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
         protected MissingAccessPoliciesForPermissionAccessPolicyException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

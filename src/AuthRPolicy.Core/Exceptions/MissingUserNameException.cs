@@ -15,10 +15,6 @@ namespace AuthRPolicy.Core.Exceptions
         {
         }
 
-        protected MissingUserNameException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
         protected MissingUserNameException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

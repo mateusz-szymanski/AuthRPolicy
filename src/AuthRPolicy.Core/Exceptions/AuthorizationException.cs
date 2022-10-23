@@ -14,10 +14,6 @@ namespace AuthRPolicy.Core.Exceptions
         {
         }
 
-        public AuthorizationException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
         protected AuthorizationException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

@@ -17,10 +17,6 @@ namespace AuthRPolicy.Core.Roles.Exceptions
         {
         }
 
-        protected RoleAlreadyAddedException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
         protected RoleAlreadyAddedException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
