@@ -9,7 +9,7 @@ namespace AuthRPolicy.MediatRExtensions.Tests.Tests
     public class ServiceCollectionExtensionsTests
     {
         [Fact]
-        public void AddAuthorizationBehavior_ShouldRegisterServices_GivenNullRoleProviderAndEmptyAssembly()
+        public void AddAuthorizationBehavior_ShouldRegisterServices()
         {
             // Arrange
             var services = new ServiceCollection();
