@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace AuthRPolicy.Core.Services
 {
-    class AuthorizationService : IAuthorizationService
+    internal class AuthorizationService : IAuthorizationService
     {
         private readonly ILogger<AuthorizationService> _logger;
         private readonly IRoleProvider _roleProvider;

@@ -1,6 +1,6 @@
 ﻿namespace AuthRPolicy.Core.AccessPolicy
 {
-    class EmptyAccessPolicyChecker : IAccessPolicyChecker<EmptyAccessPolicy>
+    internal class EmptyAccessPolicyChecker : IAccessPolicyChecker<EmptyAccessPolicy>
     {
         public bool HasAccess(IUser user, EmptyAccessPolicy accessPolicy)
         {
