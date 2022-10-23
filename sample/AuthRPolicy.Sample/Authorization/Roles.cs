@@ -4,8 +4,8 @@ namespace AuthRPolicy.Sample.Authorization
 {
     public static class Roles
     {
-        public readonly static Role DocumentReviewer = new("document-reviewer");
-        public readonly static Role DocumentCreator = new("document-creator");
-        public readonly static Role Admin = new("admin");
+        public static Role DocumentReviewer { get; } = new("document-reviewer");
+        public static Role DocumentCreator { get; } = new("document-creator");
+        public static Role Admin { get; } = new("admin");
     }
 }

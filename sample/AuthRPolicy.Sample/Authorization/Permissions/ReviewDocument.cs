@@ -10,7 +10,7 @@ namespace AuthRPolicy.Sample.Authorization.Permissions
 
         public static IPermission Default { get; } = new Permission<DocumentReviewerAccessPolicy>(MainName);
 
-        public static Func<DocumentReviewerAccessPolicy, PermissionAccessPolicy> AccessPolicy =
+        public readonly static Func<DocumentReviewerAccessPolicy, PermissionAccessPolicy> AccessPolicy =
             (documentReviewerAccessPolicy) => new(MainName, documentReviewerAccessPolicy);
     }
 }

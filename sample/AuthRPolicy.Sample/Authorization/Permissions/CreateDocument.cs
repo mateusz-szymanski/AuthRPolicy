@@ -10,6 +10,6 @@ namespace AuthRPolicy.Sample.Authorization.Permissions
 
         public static IPermission Default { get; } = new Permission<EmptyAccessPolicy>(MainName);
 
-        public static Func<PermissionAccessPolicy> AccessPolicy = () => new(MainName, new EmptyAccessPolicy());
+        public readonly static Func<PermissionAccessPolicy> AccessPolicy = () => new(MainName, new EmptyAccessPolicy());
     }
 }
