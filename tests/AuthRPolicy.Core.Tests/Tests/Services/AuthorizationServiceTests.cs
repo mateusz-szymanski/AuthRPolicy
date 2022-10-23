@@ -2,6 +2,7 @@
 using AuthRPolicy.Core.Permissions;
 using AuthRPolicy.Core.Roles;
 using AuthRPolicy.Core.Services;
+using AuthRPolicy.Core.Services.Exceptions;
 using AuthRPolicy.Core.Tests.Assertions;
 using AuthRPolicy.Core.Tests.IoC;
 using AuthRPolicy.Core.Tests.Stubs;
@@ -353,6 +354,43 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
 
             // Assert
             Assert.True(isUserAuthorized);
+        }
+
+        [Fact]
+        public async Task IsUserAuthorized_ShouldMissingAccessPolicyCheckerException_GivenAccessPolicyWithoutChecker()
+        {
+            // Arrange
+            var role1 = new Role("my-role-1");
+            var permission1 = new Permission<AccessPolicy2Stub>("my-permission-1");
+
+            var defaultRoleProvider = new DefaultRoleProvider()
+                .AddRole(role1, permission1);
+
+            var userMock = new Mock<IUser>();
+            userMock.Setup(u => u.UserName).Returns("my-username");
+            userMock.Setup(u => u.Roles).Returns(new[] { role1 });
+            var user = userMock.Object;
+
+            var accessPolicy2Stub = new AccessPolicy2Stub();
+            var accessPolicy1CheckerStub = new AccessPolicy1CheckerStub()
+                .ShouldReturn((_, _) => true);
+
+            var permissionAccessPolicy = new PermissionAccessPolicy(permission1.MainName, accessPolicy2Stub);
+
+            var serviceCollection = new ServiceCollection()
+                .AddNullLogger()
+                .AddScoped<IAuthorizationService, AuthorizationService>()
+                .AddSingleton<IRoleProvider>(defaultRoleProvider.Build())
+                .AddSingleton<IAccessPolicyChecker<AccessPolicy1Stub>>(accessPolicy1CheckerStub);
+
+            await using var serviceProvider = serviceCollection.BuildServiceProvider();
+            await using var serviceScope = serviceProvider.CreateAsyncScope();
+
+            var authorizationService = serviceScope.ServiceProvider.GetRequiredService<IAuthorizationService>();
+
+            // Act
+            // Assert
+            Assert.Throws<MissingAccessPolicyCheckerException>(() => authorizationService.IsUserAuthorized(user, permissionAccessPolicy));
         }
 
         #endregion

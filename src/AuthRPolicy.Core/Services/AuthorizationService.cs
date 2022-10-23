@@ -84,7 +84,7 @@ namespace AuthRPolicy.Core.Services
             var accessPolicyChecker = _serviceProvider.GetService(accessPolicyCheckerType);
 
             if (accessPolicyChecker is null)
-                throw MissingAccessPolicyCheckerException.New(accessPolicy); // TODO: tests
+                throw MissingAccessPolicyCheckerException.New(accessPolicy);
 
             var hasAccessMethodInfo = accessPolicyCheckerType.GetMethod(nameof(IAccessPolicyChecker<IAccessPolicy>.HasAccess));
             var hasAccessResult = hasAccessMethodInfo!.Invoke(accessPolicyChecker, new object[] { user, accessPolicy });
