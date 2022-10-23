@@ -2,6 +2,7 @@ using AuthRPolicy.Sample.Commands;
 using AuthRPolicy.Sample.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace AuthRPolicy.Sample.Controllers
 {

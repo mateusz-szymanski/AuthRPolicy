@@ -2,6 +2,7 @@
 using AuthRPolicy.Core.Permissions;
 using AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentOwner;
 using AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentReviewer;
+using System;
 
 namespace AuthRPolicy.Sample.Authorization.Permissions
 {

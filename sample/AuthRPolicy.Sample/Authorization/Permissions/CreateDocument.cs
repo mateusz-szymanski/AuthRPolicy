@@ -1,5 +1,6 @@
 ﻿using AuthRPolicy.Core.AccessPolicy;
 using AuthRPolicy.Core.Permissions;
+using System;
 
 namespace AuthRPolicy.Sample.Authorization.Permissions
 {
