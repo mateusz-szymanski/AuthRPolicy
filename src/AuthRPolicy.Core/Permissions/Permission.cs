@@ -33,7 +33,7 @@ namespace AuthRPolicy.Core.Permissions
 
         private string GetDebuggerDisplay()
         {
-            return $"{FullName} - {AccessPolicyType.Name}";
+            return $"{FullName} - {AccessPolicyType.FullName}";
         }
     }
 }
