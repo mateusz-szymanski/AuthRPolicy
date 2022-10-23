@@ -1,4 +1,5 @@
 ﻿using AuthRPolicy.Core.AccessPolicy;
+using AuthRPolicy.Core.IoC.Exceptions;
 using AuthRPolicy.Core.Roles;
 using AuthRPolicy.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +10,7 @@ using System.Reflection;
 
 namespace AuthRPolicy.Core.IoC
 {
+    // TODO: Tests
     public static class ServiceCollectionExtensions
     {
         /// <summary>
@@ -66,7 +68,7 @@ namespace AuthRPolicy.Core.IoC
                     .Where(type => DoesTypeSupportInterface(type, accessPolicyCheckerInterfaceType) && !type.IsAbstract);
 
                 if (implementationTypes.Count() != 1)
-                    throw new Exception($"There must exactly one implementation for {accessPolicyCheckerInterfaceType.Name}"); // TODO: Custom exception
+                    throw IncorrectAccessPolicyCheckerDefinitionException.New(accessPolicyCheckerInterfaceType);
 
                 var implementationType = implementationTypes.Single();
                 var serviceDescriptor = new ServiceDescriptor(accessPolicyCheckerInterfaceType, implementationType, ServiceLifetime.Scoped);

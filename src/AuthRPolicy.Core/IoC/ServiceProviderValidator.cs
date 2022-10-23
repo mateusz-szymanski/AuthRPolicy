@@ -1,4 +1,5 @@
 ﻿using AuthRPolicy.Core.AccessPolicy;
+using AuthRPolicy.Core.IoC.Exceptions;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -27,7 +28,7 @@ namespace AuthRPolicy.Core.IoC
                     .Where(t => DoesTypeSupportInterface(t, accessPolicyCheckerInterfaceType));
 
                 if (implementation.Count() != 1)
-                    throw new Exception($"There must exactly one implementation for {accessPolicyCheckerInterfaceType.Name}"); // TODO: Custom exception
+                    throw IncorrectAccessPolicyCheckerDefinitionException.New(accessPolicyCheckerInterfaceType);
             }
 
             // TODO: find all implementations of IAccessPolicy and make sure there is exactly one checker for each
