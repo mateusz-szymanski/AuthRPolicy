@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 namespace AuthRPolicy.MediatRExtensions.Tests.IoC
 {
+    // TODO: remove?
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddNullLogger(this IServiceCollection services)

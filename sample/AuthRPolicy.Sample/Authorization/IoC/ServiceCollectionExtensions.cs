@@ -1,4 +1,5 @@
 ﻿using AuthRPolicy.Core.IoC;
+using AuthRPolicy.MediatRExtensions.IoC;
 using AuthRPolicy.Sample.Authorization.Permissions;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,18 +9,20 @@ namespace AuthRPolicy.Sample.Authorization.IoC
     {
         public static IServiceCollection AddApplicationAuthorization(this IServiceCollection services)
         {
-            services.AddAuthorization(options =>
-            {
-                options.Assemblies = new[] { typeof(ServiceCollectionExtensions).Assembly };
+            services
+                .AddAuthorization(options =>
+                {
+                    options.Assemblies = new[] { typeof(ServiceCollectionExtensions).Assembly };
 
-                var rolesBuilder = options.RolesBuilder;
+                    var rolesBuilder = options.RolesBuilder;
 
-                rolesBuilder.AddRole(Roles.DocumentCreator, CreateDocument.Default);
-                rolesBuilder.AddRole(Roles.DocumentReviewer, ListDocuments.AsReviwer);
-                rolesBuilder.AddRole(Roles.Admin, ListDocuments.AsAdmin);
+                    rolesBuilder.AddRole(Roles.DocumentCreator, CreateDocument.Default);
+                    rolesBuilder.AddRole(Roles.DocumentReviewer, ListDocuments.AsReviwer);
+                    rolesBuilder.AddRole(Roles.Admin, ListDocuments.AsAdmin);
 
-                rolesBuilder.ConnectPermissions(CreateDocument.Default, ListDocuments.AsOwner);
-            });
+                    rolesBuilder.ConnectPermissions(CreateDocument.Default, ListDocuments.AsOwner);
+                })
+                .AddAuthorizationBehavior();
 
             return services;
         }

@@ -13,7 +13,7 @@ namespace AuthRPolicy.Core.IoC
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// Registers per scope RoleProvider, AuthorizationService and all access policy checkers in given assemblies.
+        /// Register per scope given RoleProvider, AuthorizationService and all access policy checkers in given assemblies.
         /// </summary>
         /// <typeparam name="TRoleProvider">Custom IRoleProvider implementation.</typeparam>
         /// <param name="services">Service collection.</param>
@@ -29,7 +29,7 @@ namespace AuthRPolicy.Core.IoC
         }
 
         /// <summary>
-        /// Registers per scope AuthorizationService and all access policy checkers in given assemblies.
+        /// Register per scope AuthorizationService and all access policy checkers in given assemblies.
         /// </summary>
         /// <param name="services">Service collection.</param>
         /// <param name="authorizationOptionsBuilder">Options.</param>

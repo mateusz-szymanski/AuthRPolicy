@@ -6,10 +6,29 @@ namespace AuthRPolicy.MediatRExtensions.IoC
 {
     public static class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// Register per scope AuthorizationBehavior and HttpContextBasedCurrentUserService.
+        /// </summary>
+        /// <param name="services">Service collection.</param>
+        /// <returns>Service collection.</returns>
         public static IServiceCollection AddAuthorizationBehavior(this IServiceCollection services)
         {
-            // TODO: tests
             services.AddScoped<ICurrentUserService, HttpContextBasedCurrentUserService>();
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
+
+            return services;
+        }
+
+        /// <summary>
+        /// Register per scope AuthorizationBehavior and custom ICurrentUserService type.
+        /// </summary>
+        /// <typeparam name="TCurrentUserService">Custom implementation of ICurrentUserService.</typeparam>
+        /// <param name="services">Service collection.</param>
+        /// <returns>Service collection.</returns>
+        public static IServiceCollection AddAuthorizationBehavior<TCurrentUserService>(this IServiceCollection services)
+            where TCurrentUserService : class, ICurrentUserService
+        {
+            services.AddScoped<ICurrentUserService, TCurrentUserService>();
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
 
             return services;
