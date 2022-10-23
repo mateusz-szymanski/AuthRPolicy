@@ -1,10 +1,8 @@
 ﻿using AuthRPolicy.Core.AccessPolicy;
 using AuthRPolicy.Core.IoC.Exceptions;
-using System;
-using System.Linq;
 using System.Reflection;
 
-namespace AuthRPolicy.Core.IoC
+namespace AuthRPolicy.MediatRExtensions.IoC
 {
     // TODO:
     class ServiceProviderValidator : IServiceProviderValidator

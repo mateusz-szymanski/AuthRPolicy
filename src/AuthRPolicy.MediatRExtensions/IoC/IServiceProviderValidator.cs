@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace AuthRPolicy.Core.IoC
+namespace AuthRPolicy.MediatRExtensions.IoC
 {
     internal interface IServiceProviderValidator
     {
