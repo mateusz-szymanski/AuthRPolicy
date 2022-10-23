@@ -1,8 +1,8 @@
 ﻿using AuthRPolicy.Core.Permissions;
-using AuthRPolicy.Core.Tests.Sample.AccessPolicies.DocumentPermissions;
 using AuthRPolicy.MediatRExtensions;
+using AuthRPolicy.Sample.Authorization.Permissions;
 
-namespace AuthRPolicy.Core.Tests.Sample.Commands
+namespace AuthRPolicy.Sample.Commands
 {
     public class GetDocumentCommand : IAuthorizedRequest
     {

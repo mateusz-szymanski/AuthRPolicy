@@ -1,7 +1,7 @@
 ﻿using AuthRPolicy.Core.Roles;
-using AuthRPolicy.Core.Tests.Sample.AccessPolicies.DocumentPermissions;
+using AuthRPolicy.Sample.Authorization.Permissions;
 
-namespace AuthRPolicy.Core.Tests.Sample.IoC
+namespace AuthRPolicy.Sample.Authorization.IoC
 {
     public class RoleProvider : DefaultRoleProvider
     {

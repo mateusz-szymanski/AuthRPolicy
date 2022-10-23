@@ -1,7 +1,7 @@
 ﻿using AuthRPolicy.Core.AccessPolicy;
-using AuthRPolicy.Core.Tests.Sample.Commands;
+using AuthRPolicy.Sample.Commands;
 
-namespace AuthRPolicy.Core.Tests.Sample.AccessPolicies.DocumentOwner
+namespace AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentOwner
 {
     public record DocumentOwnerAccessPolicy(DocumentId DocumentId) : IAccessPolicy
     {

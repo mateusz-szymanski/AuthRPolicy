@@ -1,8 +1,7 @@
 ﻿using AuthRPolicy.Core.AccessPolicy;
 using AuthRPolicy.Core.Permissions;
-using System;
 
-namespace AuthRPolicy.Core.Tests.Sample.AccessPolicies.DocumentPermissions
+namespace AuthRPolicy.Sample.Authorization.Permissions
 {
     public static class CreateDocument
     {

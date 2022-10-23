@@ -1,8 +1,8 @@
 ﻿using AuthRPolicy.Core;
 using AuthRPolicy.Core.AccessPolicy;
-using AuthRPolicy.Core.Tests.Sample.Commands;
+using AuthRPolicy.Sample.Commands;
 
-namespace AuthRPolicy.Core.Tests.Sample.AccessPolicies.DocumentReviewer
+namespace AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentReviewer
 {
     public class DocumentReviewerAccessPolicyChecker : IAccessPolicyChecker<DocumentReviewerAccessPolicy>
     {

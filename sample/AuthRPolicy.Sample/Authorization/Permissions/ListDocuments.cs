@@ -1,10 +1,9 @@
 ﻿using AuthRPolicy.Core.AccessPolicy;
 using AuthRPolicy.Core.Permissions;
-using AuthRPolicy.Core.Tests.Sample.AccessPolicies.DocumentOwner;
-using AuthRPolicy.Core.Tests.Sample.AccessPolicies.DocumentReviewer;
-using System;
+using AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentOwner;
+using AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentReviewer;
 
-namespace AuthRPolicy.Core.Tests.Sample.AccessPolicies.DocumentPermissions
+namespace AuthRPolicy.Sample.Authorization.Permissions
 {
     public static class ListDocuments
     {

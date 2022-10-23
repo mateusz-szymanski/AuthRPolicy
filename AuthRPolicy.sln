@@ -29,6 +29,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthRPolicy.Core.TestAssemb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthRPolicy.Core.TestAssemblies.ValidCheckers", "tests\TestAssemblies\AuthRPolicy.Core.TestAssemblies.ValidCheckers\AuthRPolicy.Core.TestAssemblies.ValidCheckers.csproj", "{2F868C01-A006-415E-B517-04C6E6BD2597}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{CB940ABE-BB55-4C78-A011-722ECF8A17EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthRPolicy.Sample", "sample\AuthRPolicy.Sample\AuthRPolicy.Sample.csproj", "{A8F6B394-CB20-4B9B-A436-F6B8226ACB32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +63,10 @@ Global
 		{2F868C01-A006-415E-B517-04C6E6BD2597}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F868C01-A006-415E-B517-04C6E6BD2597}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F868C01-A006-415E-B517-04C6E6BD2597}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8F6B394-CB20-4B9B-A436-F6B8226ACB32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8F6B394-CB20-4B9B-A436-F6B8226ACB32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8F6B394-CB20-4B9B-A436-F6B8226ACB32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8F6B394-CB20-4B9B-A436-F6B8226ACB32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +79,7 @@ Global
 		{8EE70DB8-7F60-437A-93B5-B42C13CC90EC} = {5A634F3B-C136-48FB-A96F-D9DC0495A733}
 		{D4E081FB-1A47-4721-931C-B223C0D4A385} = {5A634F3B-C136-48FB-A96F-D9DC0495A733}
 		{2F868C01-A006-415E-B517-04C6E6BD2597} = {5A634F3B-C136-48FB-A96F-D9DC0495A733}
+		{A8F6B394-CB20-4B9B-A436-F6B8226ACB32} = {CB940ABE-BB55-4C78-A011-722ECF8A17EB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7A458598-F4C8-4C4D-95B4-1BBEC12A6377}

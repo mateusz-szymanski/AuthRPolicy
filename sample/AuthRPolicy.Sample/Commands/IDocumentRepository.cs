@@ -1,4 +1,4 @@
-﻿namespace AuthRPolicy.Core.Tests.Sample.Commands
+﻿namespace AuthRPolicy.Sample.Commands
 {
     public interface IDocumentRepository
     {

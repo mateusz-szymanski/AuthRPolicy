@@ -1,8 +1,8 @@
 ﻿using AuthRPolicy.Core.Permissions;
-using AuthRPolicy.Core.Tests.Sample.AccessPolicies.DocumentReviewer;
+using AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentReviewer;
 using System;
 
-namespace AuthRPolicy.Core.Tests.Sample.AccessPolicies.DocumentPermissions
+namespace AuthRPolicy.Sample.Authorization.Permissions
 {
     public static class ReviewDocument
     {

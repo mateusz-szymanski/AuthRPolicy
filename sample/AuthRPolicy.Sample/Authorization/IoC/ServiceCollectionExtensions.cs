@@ -1,8 +1,8 @@
 ﻿using AuthRPolicy.Core.IoC;
-using AuthRPolicy.Core.Tests.Sample.AccessPolicies.DocumentPermissions;
+using AuthRPolicy.Sample.Authorization.Permissions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AuthRPolicy.Core.Tests.Sample.IoC
+namespace AuthRPolicy.Sample.Authorization.IoC
 {
     public static class ServiceCollectionExtensions
     {
