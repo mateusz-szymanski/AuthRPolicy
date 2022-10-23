@@ -2,7 +2,7 @@
 {
     internal class EmptyAccessPolicyChecker : IAccessPolicyChecker<EmptyAccessPolicy>
     {
-        public bool HasAccess(IUser user, EmptyAccessPolicy accessPolicy)
+        public bool HasAccess(User user, EmptyAccessPolicy accessPolicy)
         {
             return true;
         }

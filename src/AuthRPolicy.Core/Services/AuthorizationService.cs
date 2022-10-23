@@ -25,7 +25,7 @@ namespace AuthRPolicy.Core.Services
             _serviceProvider = serviceProvider;
         }
 
-        public IEnumerable<IPermission> GetUserPermissions(IUser user)
+        public IEnumerable<IPermission> GetUserPermissions(User user)
         {
             var allRoles = _roleProvider.GetAvailableRoles();
             var userRoles = allRoles.Intersect(user.Roles);
@@ -36,7 +36,7 @@ namespace AuthRPolicy.Core.Services
             return userPermissions;
         }
 
-        public bool IsUserAuthorized(IUser user, PermissionAccessPolicy permissionAccessPolicy)
+        public bool IsUserAuthorized(User user, PermissionAccessPolicy permissionAccessPolicy)
         {
             _logger.LogDebug("Authorizing user {userName} for {permission}", user.UserName, permissionAccessPolicy.PermissionMainName);
 
@@ -74,7 +74,7 @@ namespace AuthRPolicy.Core.Services
             return false;
         }
 
-        private bool CheckAccessPolicy(IUser user, IAccessPolicy accessPolicy)
+        private bool CheckAccessPolicy(User user, IAccessPolicy accessPolicy)
         {
             _logger.LogDebug("Checking {accessPolicy} access policy...", accessPolicy.Name);
 

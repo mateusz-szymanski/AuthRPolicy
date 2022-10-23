@@ -13,7 +13,7 @@ namespace AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentReviewer
             _documentRepository = documentRepository;
         }
 
-        public bool HasAccess(IUser user, DocumentReviewerAccessPolicy accessPolicy)
+        public bool HasAccess(User user, DocumentReviewerAccessPolicy accessPolicy)
         {
             var documentReviewer = _documentRepository.GetDocumentReviewer(accessPolicy.DocumentId);
             return documentReviewer == user.UserName;

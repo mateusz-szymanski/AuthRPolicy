@@ -5,7 +5,7 @@ namespace AuthRPolicy.Core.Services
 {
     public interface IAuthorizationService
     {
-        bool IsUserAuthorized(IUser user, PermissionAccessPolicy permissionAccessPolicy);
-        IEnumerable<IPermission> GetUserPermissions(IUser user);
+        bool IsUserAuthorized(User user, PermissionAccessPolicy permissionAccessPolicy);
+        IEnumerable<IPermission> GetUserPermissions(User user);
     }
 }

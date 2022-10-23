@@ -5,20 +5,20 @@ namespace AuthRPolicy.Core.Tests.Stubs
 {
     internal class AccessPolicy3CheckerStub : IAccessPolicyChecker<AccessPolicy3Stub>
     {
-        private Func<IUser, AccessPolicy3Stub, bool> _hasAccessFunc;
+        private Func<User, AccessPolicy3Stub, bool> _hasAccessFunc;
 
         public AccessPolicy3CheckerStub()
         {
             _hasAccessFunc = (_, _) => true;
         }
 
-        public AccessPolicy3CheckerStub ShouldReturn(Func<IUser, AccessPolicy3Stub, bool> hasAccessFunc)
+        public AccessPolicy3CheckerStub ShouldReturn(Func<User, AccessPolicy3Stub, bool> hasAccessFunc)
         {
             _hasAccessFunc = hasAccessFunc;
             return this;
         }
 
-        public bool HasAccess(IUser user, AccessPolicy3Stub accessPolicy)
+        public bool HasAccess(User user, AccessPolicy3Stub accessPolicy)
         {
             return _hasAccessFunc(user, accessPolicy);
         }

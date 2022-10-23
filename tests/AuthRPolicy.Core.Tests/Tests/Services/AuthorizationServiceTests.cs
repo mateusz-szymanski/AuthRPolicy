@@ -7,7 +7,6 @@ using AuthRPolicy.Core.Tests.Assertions;
 using AuthRPolicy.Core.Tests.IoC;
 using AuthRPolicy.Core.Tests.Stubs;
 using Microsoft.Extensions.DependencyInjection;
-using Moq;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -29,10 +28,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
 
             var defaultRoleProvider = new DefaultRoleProvider();
 
-            var userMock = new Mock<IUser>();
-            userMock.Setup(u => u.UserName).Returns("my-username");
-            userMock.Setup(u => u.Roles).Returns(new Role[0]);
-            var user = userMock.Object;
+            var user = new User("my-username", new Role[0]);
 
             var accessPolicy1Stub = new AccessPolicy1Stub();
             var accessPolicy1CheckerStub = new AccessPolicy1CheckerStub()
@@ -77,10 +73,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, userPermission);
 
-            var userMock = new Mock<IUser>();
-            userMock.Setup(u => u.UserName).Returns("my-username");
-            userMock.Setup(u => u.Roles).Returns(new[] { role1 });
-            var user = userMock.Object;
+            var user = new User("my-username", new[] { role1 });
 
             var accessPolicy1Stub = new AccessPolicy1Stub();
             var accessPolicy1CheckerStub = new AccessPolicy1CheckerStub()
@@ -119,10 +112,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, permission);
 
-            var userMock = new Mock<IUser>();
-            userMock.Setup(u => u.UserName).Returns("my-username");
-            userMock.Setup(u => u.Roles).Returns(new[] { role1 });
-            var user = userMock.Object;
+            var user = new User("my-username", new[] { role1 });
 
             var accessPolicy1Stub = new AccessPolicy1Stub();
             var accessPolicy1CheckerStub = new AccessPolicy1CheckerStub()
@@ -164,10 +154,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, permission1);
 
-            var userMock = new Mock<IUser>();
-            userMock.Setup(u => u.UserName).Returns("my-username");
-            userMock.Setup(u => u.Roles).Returns(new[] { role1 });
-            var user = userMock.Object;
+            var user = new User("my-username", new[] { role1 });
 
             var accessPolicy1Stub = new AccessPolicy1Stub();
             var accessPolicy1CheckerStub = new AccessPolicy1CheckerStub()
@@ -217,10 +204,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, permission1, permission2, permission3);
 
-            var userMock = new Mock<IUser>();
-            userMock.Setup(u => u.UserName).Returns("my-username");
-            userMock.Setup(u => u.Roles).Returns(new[] { role1 });
-            var user = userMock.Object;
+            var user = new User("my-username", new[] { role1 });
 
             var accessPolicy1Stub = new AccessPolicy1Stub();
             var accessPolicy1CheckerStub = new AccessPolicy1CheckerStub()
@@ -266,10 +250,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, permission1);
 
-            var userMock = new Mock<IUser>();
-            userMock.Setup(u => u.UserName).Returns("my-username");
-            userMock.Setup(u => u.Roles).Returns(new[] { role1 });
-            var user = userMock.Object;
+            var user = new User("my-username", new[] { role1 });
 
             var accessPolicy1Stub = new AccessPolicy1Stub();
             var accessPolicy1CheckerStub = new AccessPolicy1CheckerStub()
@@ -317,10 +298,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, permission1, permission2, permission3);
 
-            var userMock = new Mock<IUser>();
-            userMock.Setup(u => u.UserName).Returns("my-username");
-            userMock.Setup(u => u.Roles).Returns(new[] { role1 });
-            var user = userMock.Object;
+            var user = new User("my-username", new[] { role1 });
 
             var accessPolicy1Stub = new AccessPolicy1Stub();
             var accessPolicy1CheckerStub = new AccessPolicy1CheckerStub()
@@ -366,10 +344,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(role1, permission1);
 
-            var userMock = new Mock<IUser>();
-            userMock.Setup(u => u.UserName).Returns("my-username");
-            userMock.Setup(u => u.Roles).Returns(new[] { role1 });
-            var user = userMock.Object;
+            var user = new User("my-username", new[] { role1 });
 
             var accessPolicy2Stub = new AccessPolicy2Stub();
             var accessPolicy1CheckerStub = new AccessPolicy1CheckerStub()
@@ -406,10 +381,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(userRole);
 
-            var userMock = new Mock<IUser>();
-            userMock.Setup(u => u.UserName).Returns("my-username");
-            userMock.Setup(u => u.Roles).Returns(new[] { userRole });
-            var user = userMock.Object;
+            var user = new User("my-username", new[] { userRole });
 
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
@@ -438,10 +410,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var defaultRoleProvider = new DefaultRoleProvider()
                 .AddRole(otherRole);
 
-            var userMock = new Mock<IUser>();
-            userMock.Setup(u => u.UserName).Returns("my-username");
-            userMock.Setup(u => u.Roles).Returns(new[] { userRole });
-            var user = userMock.Object;
+            var user = new User("my-username", new[] { userRole });
 
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
@@ -480,10 +449,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
                 .AddRole(userRole, permission1, permission2, permission3, permission4)
                 .AddRole(anotherRole, otherPermission1, otherPermission2, otherPermission3, otherPermission4);
 
-            var userMock = new Mock<IUser>();
-            userMock.Setup(u => u.UserName).Returns("my-username");
-            userMock.Setup(u => u.Roles).Returns(new[] { userRole });
-            var user = userMock.Object;
+            var user = new User("my-username", new[] { userRole });
 
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()
@@ -535,10 +501,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
                 .AddRole(role1, role1Permissions)
                 .AddRole(role2, role2Permissions);
 
-            var userMock = new Mock<IUser>();
-            userMock.Setup(u => u.UserName).Returns("my-username");
-            userMock.Setup(u => u.Roles).Returns(new[] { role1, role2 });
-            var user = userMock.Object;
+            var user = new User("my-username", new[] { role1, role2 });
 
             var serviceCollection = new ServiceCollection()
                 .AddNullLogger()

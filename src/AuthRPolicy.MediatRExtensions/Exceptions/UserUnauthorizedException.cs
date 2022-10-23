@@ -7,7 +7,7 @@ namespace AuthRPolicy.MediatRExtensions.Exceptions
     [Serializable]
     public class UserUnauthorizedException : AuthorizationException
     {
-        public static UserUnauthorizedException New(IUser user, IAuthorizedRequest request)
+        public static UserUnauthorizedException New(Core.User user, IAuthorizedRequest request)
         {
             var message = $"User {user.UserName} is not authorized to execute request {request.GetType().Name}";
             return new UserUnauthorizedException(message);

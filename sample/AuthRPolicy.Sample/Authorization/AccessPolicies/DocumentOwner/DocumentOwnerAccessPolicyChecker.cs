@@ -13,7 +13,7 @@ namespace AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentOwner
             _documentRepository = documentRepository;
         }
 
-        public bool HasAccess(IUser user, DocumentOwnerAccessPolicy accessPolicy)
+        public bool HasAccess(User user, DocumentOwnerAccessPolicy accessPolicy)
         {
             var documentOwner = _documentRepository.GetDocumentOwner(accessPolicy.DocumentId);
             return documentOwner == user.UserName;
