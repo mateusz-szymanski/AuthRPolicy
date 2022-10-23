@@ -5,6 +5,7 @@ using AuthRPolicy.Core.Permissions;
 using AuthRPolicy.Core.Roles;
 using AuthRPolicy.Core.Services;
 using AuthRPolicy.Core.TestAssemblies.EmptyAssembly;
+using AuthRPolicy.Core.TestAssemblies.MissingChecker;
 using AuthRPolicy.Core.TestAssemblies.ValidCheckers;
 using Microsoft.Extensions.DependencyInjection;
 using System;

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace AuthRPolicy.Core.Tests.IoC
+namespace AuthRPolicy.MediatRExtensions.Tests.IoC
 {
     public static class ServiceCollectionExtensions
     {
