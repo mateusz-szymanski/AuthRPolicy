@@ -14,49 +14,49 @@ namespace AuthRPolicy.Core.IoC
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// Registers per scope RoleProvider, PermissionProvider, AuthorizationService and all access policy checkers in given assemblies.
+        /// Registers per scope RoleProvider, AuthorizationService and all access policy checkers in given assemblies.
         /// </summary>
-        /// <typeparam name="TRoleProvider"></typeparam>
-        /// <typeparam name="TPermissionProvider"></typeparam>
-        /// <param name="services"></param>
-        /// <param name="assemblies"></param>
-        /// <returns></returns>
-        public static IServiceCollection AddAuthorization<TRoleProvider>(
-            this IServiceCollection services,
-            params Assembly[] assemblies)
+        /// <typeparam name="TRoleProvider">Custom IRoleProvider implementation.</typeparam>
+        /// <param name="services">Service collection.</param>
+        /// <param name="assemblies">Assemblies with AccesPolicyChecker implementations.</param>
+        /// <returns>Service collection.</returns>
+        public static IServiceCollection AddAuthorization<TRoleProvider>(this IServiceCollection services, params Assembly[] assemblies)
             where TRoleProvider : class, IRoleProvider
         {
             services.AddScoped<IRoleProvider, TRoleProvider>();
-            services.AddScoped<IAuthorizationService, AuthorizationService>();
-
-            services.AddScoped<IAccessPolicyChecker<EmptyAccessPolicy>, EmptyAccessPolicyChecker>();
-
-            services.RegisterAccessPolicyCheckersFromAssembly(assemblies);
+            services.AddBasicServices(assemblies);
 
             return services;
         }
 
-        public static IServiceCollection AddAuthorization(
-            this IServiceCollection services,
-            Action<AuthorizationOptions> authorizationOptionsBuilder)
+        /// <summary>
+        /// Registers per scope AuthorizationService and all access policy checkers in given assemblies.
+        /// </summary>
+        /// <param name="services">Service collection.</param>
+        /// <param name="authorizationOptionsBuilder">Options.</param>
+        /// <returns>Service collection.</returns>
+        public static IServiceCollection AddAuthorization(this IServiceCollection services, Action<AuthorizationOptions> authorizationOptionsBuilder)
         {
             var authorizationOptions = new AuthorizationOptions();
             authorizationOptionsBuilder(authorizationOptions);
             var roleProvider = authorizationOptions.RolesBuilder.Build();
 
             services.AddSingleton(roleProvider);
-            services.AddScoped<IAuthorizationService, AuthorizationService>();
-
-            services.AddScoped<IAccessPolicyChecker<EmptyAccessPolicy>, EmptyAccessPolicyChecker>();
-
-            services.RegisterAccessPolicyCheckersFromAssembly(authorizationOptions.Assemblies);
+            services.AddBasicServices(authorizationOptions.Assemblies);
 
             return services;
         }
 
-        private static IServiceCollection RegisterAccessPolicyCheckersFromAssembly(
-            this IServiceCollection services,
-            IEnumerable<Assembly> assemblies)
+        private static IServiceCollection AddBasicServices(this IServiceCollection services, IEnumerable<Assembly> assemblies)
+        {
+            services.AddScoped<IAuthorizationService, AuthorizationService>();
+            services.AddScoped<IAccessPolicyChecker<EmptyAccessPolicy>, EmptyAccessPolicyChecker>();
+            services.RegisterAccessPolicyCheckersFromAssembly(assemblies);
+
+            return services;
+        }
+
+        private static IServiceCollection RegisterAccessPolicyCheckersFromAssembly(this IServiceCollection services, IEnumerable<Assembly> assemblies)
         {
             var allTypes = assemblies.SelectMany(a => a.GetTypes());
             var accessPolicyTypes = allTypes.Where(t => t.IsAssignableTo(typeof(IAccessPolicy)));
