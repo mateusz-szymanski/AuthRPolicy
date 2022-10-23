@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace AuthRPolicy.Core
 {
-    public interface IUser
+    public interface IUser // TODO: just User?
     {
-        string UserName { get; }
+        string UserName { get; } // TODO: consider UserName type
         IEnumerable<Role> Roles { get; }
     }
 }

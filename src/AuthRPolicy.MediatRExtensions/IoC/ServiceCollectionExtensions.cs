@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AuthRPolicy.MediatRExtensions.Services;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AuthRPolicy.MediatRExtensions.IoC
 {
@@ -6,7 +8,9 @@ namespace AuthRPolicy.MediatRExtensions.IoC
     {
         public static IServiceCollection AddAuthorizationBehavior(this IServiceCollection services)
         {
-            // TODO: 
+            // TODO: tests
+            services.AddScoped<ICurrentUserService, HttpContextBasedCurrentUserService>();
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
 
             return services;
         }
