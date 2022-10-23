@@ -7,7 +7,7 @@ using AuthRPolicy.Core.Tests.Stubs;
 using System.Linq;
 using Xunit;
 
-namespace AuthRPolicy.Core.Tests.Tests.Services
+namespace AuthRPolicy.Core.Tests.Tests.Roles
 {
     public class DefaultRoleProviderTests
     {
