@@ -14,7 +14,7 @@ namespace AuthRPolicy.MediatRExtensions.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public Task<Core.User> GetCurrentUser(CancellationToken cancellationToken)
+        public Task<User> GetCurrentUser(CancellationToken cancellationToken)
         {
             var claims = _httpContextAccessor.HttpContext.User.Claims;
 

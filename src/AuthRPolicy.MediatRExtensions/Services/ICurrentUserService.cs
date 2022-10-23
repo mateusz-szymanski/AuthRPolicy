@@ -4,6 +4,6 @@ namespace AuthRPolicy.MediatRExtensions.Services
 {
     public interface ICurrentUserService
     {
-        Task<Core.User> GetCurrentUser(CancellationToken cancellationToken);
+        Task<User> GetCurrentUser(CancellationToken cancellationToken);
     }
 }
