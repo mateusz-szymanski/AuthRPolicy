@@ -1,10 +1,10 @@
-﻿using AuthRPolicy.Core.Roles;
-using AuthRPolicy.Core.Roles.Exceptions;
+﻿using AuthRPolicy.Core.Exceptions;
+using AuthRPolicy.Core.Roles;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace AuthRPolicy.Core.Tests.Tests.Roles
+namespace AuthRPolicy.Core.Tests.Tests
 {
     public class UserTests
     {

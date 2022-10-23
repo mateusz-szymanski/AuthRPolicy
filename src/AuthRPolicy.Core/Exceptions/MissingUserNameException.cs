@@ -1,8 +1,7 @@
-﻿using AuthRPolicy.Core.Exceptions;
-using System;
+﻿using System;
 using System.Runtime.Serialization;
 
-namespace AuthRPolicy.Core.Roles.Exceptions
+namespace AuthRPolicy.Core.Exceptions
 {
     [Serializable]
     public class MissingUserNameException : AuthorizationException

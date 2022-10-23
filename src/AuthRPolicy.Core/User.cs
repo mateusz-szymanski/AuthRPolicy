@@ -1,5 +1,5 @@
-﻿using AuthRPolicy.Core.Roles;
-using AuthRPolicy.Core.Roles.Exceptions;
+﻿using AuthRPolicy.Core.Exceptions;
+using AuthRPolicy.Core.Roles;
 using System.Collections.Generic;
 using System.Linq;
 
