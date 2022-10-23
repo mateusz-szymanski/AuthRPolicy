@@ -1,7 +1,7 @@
 ﻿using AuthRPolicy.Core.Roles;
 using AuthRPolicy.Sample.Authorization.Permissions;
 
-namespace AuthRPolicy.Sample.Authorization.IoC
+namespace AuthRPolicy.Sample.Authorization
 {
     public class RoleProvider : DefaultRoleProvider
     {

@@ -1,6 +1,5 @@
 ﻿using AuthRPolicy.Core.IoC;
 using AuthRPolicy.Sample.Authorization.Permissions;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace AuthRPolicy.Sample.Authorization.IoC
 {
