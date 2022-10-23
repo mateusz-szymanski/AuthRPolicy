@@ -10,7 +10,6 @@ using System.Reflection;
 
 namespace AuthRPolicy.Core.IoC
 {
-    // TODO: Tests
     public static class ServiceCollectionExtensions
     {
         /// <summary>
@@ -65,7 +64,7 @@ namespace AuthRPolicy.Core.IoC
             foreach (var accessPolicyCheckerInterfaceType in accessPolicyCheckerInterfaceTypes)
             {
                 var implementationTypes = allTypes
-                    .Where(type => DoesTypeSupportInterface(type, accessPolicyCheckerInterfaceType) && !type.IsAbstract);
+                    .Where(type => !type.IsAbstract && DoesTypeSupportInterface(type, accessPolicyCheckerInterfaceType));
 
                 if (implementationTypes.Count() != 1)
                     throw IncorrectAccessPolicyCheckerDefinitionException.New(accessPolicyCheckerInterfaceType);
@@ -82,8 +81,6 @@ namespace AuthRPolicy.Core.IoC
         private static bool DoesTypeSupportInterface(Type type, Type interfaceType)
         {
             if (interfaceType.IsAssignableFrom(type))
-                return true;
-            if (type.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == interfaceType))
                 return true;
 
             return false;

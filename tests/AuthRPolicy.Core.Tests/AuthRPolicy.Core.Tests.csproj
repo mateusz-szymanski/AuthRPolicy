@@ -34,6 +34,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\AuthRPolicy.Core\AuthRPolicy.Core.csproj" />
     <ProjectReference Include="..\..\src\AuthRPolicy.MediatRExtensions\AuthRPolicy.MediatRExtensions.csproj" />
+    <ProjectReference Include="..\TestAssemblies\AuthRPolicy.Core.TestAssemblies.EmptyAssembly\AuthRPolicy.Core.TestAssemblies.EmptyAssembly.csproj" />
+    <ProjectReference Include="..\TestAssemblies\AuthRPolicy.Core.TestAssemblies.MissingChecker\AuthRPolicy.Core.TestAssemblies.MissingChecker.csproj" />
+    <ProjectReference Include="..\TestAssemblies\AuthRPolicy.Core.TestAssemblies.ValidCheckers\AuthRPolicy.Core.TestAssemblies.ValidCheckers.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FB8A28F9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthRPolicy.Core", "src\AuthRPolicy.Core\AuthRPolicy.Core.csproj", "{6266D80A-3EED-469A-9D9F-1A6972EF1904}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthRPolicy.Core.MediatRExtensions", "src\AuthRPolicy.MediatRExtensions\AuthRPolicy.MediatRExtensions.csproj", "{6BE62C0A-BA5D-482D-9747-0FFDEF585A33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthRPolicy.MediatRExtensions", "src\AuthRPolicy.MediatRExtensions\AuthRPolicy.MediatRExtensions.csproj", "{6BE62C0A-BA5D-482D-9747-0FFDEF585A33}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthRPolicy.Core.Tests", "tests\AuthRPolicy.Core.Tests\AuthRPolicy.Core.Tests.csproj", "{89777077-AC0B-4C84-AB52-BA12A0164CC5}"
 EndProject
@@ -20,6 +20,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestAssemblies", "TestAssemblies", "{5A634F3B-C136-48FB-A96F-D9DC0495A733}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthRPolicy.Core.TestAssemblies.EmptyAssembly", "tests\TestAssemblies\AuthRPolicy.Core.TestAssemblies.EmptyAssembly\AuthRPolicy.Core.TestAssemblies.EmptyAssembly.csproj", "{8EE70DB8-7F60-437A-93B5-B42C13CC90EC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthRPolicy.Core.TestAssemblies.MissingChecker", "tests\TestAssemblies\AuthRPolicy.Core.TestAssemblies.MissingChecker\AuthRPolicy.Core.TestAssemblies.MissingChecker.csproj", "{D4E081FB-1A47-4721-931C-B223C0D4A385}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthRPolicy.Core.TestAssemblies.ValidCheckers", "tests\TestAssemblies\AuthRPolicy.Core.TestAssemblies.ValidCheckers\AuthRPolicy.Core.TestAssemblies.ValidCheckers.csproj", "{2F868C01-A006-415E-B517-04C6E6BD2597}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +47,18 @@ Global
 		{89777077-AC0B-4C84-AB52-BA12A0164CC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89777077-AC0B-4C84-AB52-BA12A0164CC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89777077-AC0B-4C84-AB52-BA12A0164CC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EE70DB8-7F60-437A-93B5-B42C13CC90EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EE70DB8-7F60-437A-93B5-B42C13CC90EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EE70DB8-7F60-437A-93B5-B42C13CC90EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EE70DB8-7F60-437A-93B5-B42C13CC90EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4E081FB-1A47-4721-931C-B223C0D4A385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4E081FB-1A47-4721-931C-B223C0D4A385}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4E081FB-1A47-4721-931C-B223C0D4A385}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4E081FB-1A47-4721-931C-B223C0D4A385}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F868C01-A006-415E-B517-04C6E6BD2597}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F868C01-A006-415E-B517-04C6E6BD2597}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F868C01-A006-415E-B517-04C6E6BD2597}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F868C01-A006-415E-B517-04C6E6BD2597}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +67,10 @@ Global
 		{6266D80A-3EED-469A-9D9F-1A6972EF1904} = {84AB8A67-6FED-459E-98BC-31D79A3A383C}
 		{6BE62C0A-BA5D-482D-9747-0FFDEF585A33} = {84AB8A67-6FED-459E-98BC-31D79A3A383C}
 		{89777077-AC0B-4C84-AB52-BA12A0164CC5} = {FB8A28F9-B345-4431-86A2-E239CC1C80D0}
+		{5A634F3B-C136-48FB-A96F-D9DC0495A733} = {FB8A28F9-B345-4431-86A2-E239CC1C80D0}
+		{8EE70DB8-7F60-437A-93B5-B42C13CC90EC} = {5A634F3B-C136-48FB-A96F-D9DC0495A733}
+		{D4E081FB-1A47-4721-931C-B223C0D4A385} = {5A634F3B-C136-48FB-A96F-D9DC0495A733}
+		{2F868C01-A006-415E-B517-04C6E6BD2597} = {5A634F3B-C136-48FB-A96F-D9DC0495A733}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7A458598-F4C8-4C4D-95B4-1BBEC12A6377}

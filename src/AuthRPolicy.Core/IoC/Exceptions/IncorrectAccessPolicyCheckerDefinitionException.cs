@@ -9,7 +9,7 @@ namespace AuthRPolicy.Core.IoC.Exceptions
     {
         public static IncorrectAccessPolicyCheckerDefinitionException New(Type accessPolicyCheckerInterfaceType)
         {
-            var message = $"There must exactly one implementation for {accessPolicyCheckerInterfaceType.Name}";
+            var message = $"There must exactly one implementation for {accessPolicyCheckerInterfaceType.FullName}";
             return new IncorrectAccessPolicyCheckerDefinitionException(message);
         }
 
