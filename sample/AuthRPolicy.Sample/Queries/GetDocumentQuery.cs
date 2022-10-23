@@ -1,14 +1,16 @@
 ﻿using AuthRPolicy.Core.Permissions;
 using AuthRPolicy.MediatRExtensions;
 using AuthRPolicy.Sample.Authorization.Permissions;
+using AuthRPolicy.Sample.Commands;
+using MediatR;
 
-namespace AuthRPolicy.Sample.Commands
+namespace AuthRPolicy.Sample.Queries
 {
-    public class GetDocumentCommand : IAuthorizedRequest
+    public class GetDocumentQuery : IRequest<Document>, IAuthorizedRequest
     {
         public DocumentId DocumentId { get; }
 
-        public GetDocumentCommand(int documentId)
+        public GetDocumentQuery(int documentId)
         {
             DocumentId = new(documentId);
         }
