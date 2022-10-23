@@ -204,7 +204,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Roles
                 permission2
             };
 
-            AssertPermission.Equal(expectedPermissions, permissions);
+            AssertPermission.EqualIgnoringOrder(expectedPermissions, permissions);
         }
 
         [Fact]
@@ -243,7 +243,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Roles
                 permission6
             };
 
-            AssertPermission.Equal(expectedPermissions, permissions);
+            AssertPermission.EqualIgnoringOrder(expectedPermissions, permissions);
         }
 
         [Fact]
@@ -291,7 +291,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Roles
                 permission9,
             };
 
-            AssertPermission.Equal(expectedPermissions, permissions);
+            AssertPermission.EqualIgnoringOrder(expectedPermissions, permissions);
         }
 
         [Fact]
@@ -339,7 +339,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Roles
                 permission9,
             };
 
-            AssertPermission.Equal(expectedPermissions, permissions);
+            AssertPermission.EqualIgnoringOrder(expectedPermissions, permissions);
         }
 
         [Fact]
@@ -373,7 +373,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Roles
                 permission3,
             };
 
-            AssertPermission.Equal(expectedPermissions, permissions);
+            AssertPermission.EqualIgnoringOrder(expectedPermissions, permissions);
         }
 
         #endregion

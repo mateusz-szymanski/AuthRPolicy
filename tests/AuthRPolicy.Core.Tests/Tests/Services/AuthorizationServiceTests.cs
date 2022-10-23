@@ -466,7 +466,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
                 permission1, permission2, permission3
             };
 
-            AssertPermission.Equal(expectedPermissions, actualPermissions);
+            AssertPermission.EqualIgnoringOrder(expectedPermissions, actualPermissions);
         }
 
         [Fact]
@@ -525,7 +525,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
                 permission5
             };
 
-            AssertPermission.Equal(expectedPermissions, actualPermissions);
+            AssertPermission.EqualIgnoringOrder(expectedPermissions, actualPermissions);
         }
 
         #endregion
