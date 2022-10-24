@@ -1,7 +1,6 @@
 ﻿using AuthRPolicy.Core;
 using AuthRPolicy.Core.Roles;
 using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
 
 namespace AuthRPolicy.MediatRExtensions.Services
 {
@@ -18,9 +17,17 @@ namespace AuthRPolicy.MediatRExtensions.Services
         {
             var claims = _httpContextAccessor.HttpContext.User.Claims;
 
+            var userNameClaimType = "preferred_username";
+            var roleClaimType = "role";
+
             // TODO: 
-            var userName = claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            var roles = claims.Where(c => c.Type == ClaimTypes.Role).Select(c => new Role(c.Value));
+            var userName = claims.SingleOrDefault(c => c.Type == userNameClaimType)?.Value;
+            var roles = claims.Where(c => c.Type == roleClaimType).Select(c => new Role(c.Value));
+
+            if (string.IsNullOrEmpty(userName))
+            {
+                throw new Exception(); // TODO:
+            }
 
             var user = new User(userName, roles);
 
