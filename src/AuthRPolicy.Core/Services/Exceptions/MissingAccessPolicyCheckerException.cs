@@ -1,6 +1,7 @@
 ﻿using AuthRPolicy.Core.AccessPolicy;
 using AuthRPolicy.Core.Exceptions;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 namespace AuthRPolicy.Core.Services.Exceptions
@@ -18,6 +19,7 @@ namespace AuthRPolicy.Core.Services.Exceptions
         {
         }
 
+        [ExcludeFromCodeCoverage]
         protected MissingAccessPolicyCheckerException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

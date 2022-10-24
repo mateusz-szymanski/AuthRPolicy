@@ -1,5 +1,6 @@
 ﻿using AuthRPolicy.Core;
 using AuthRPolicy.Core.Exceptions;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 namespace AuthRPolicy.MediatRExtensions.Exceptions
@@ -17,6 +18,7 @@ namespace AuthRPolicy.MediatRExtensions.Exceptions
         {
         }
 
+        [ExcludeFromCodeCoverage]
         protected UserUnauthorizedException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

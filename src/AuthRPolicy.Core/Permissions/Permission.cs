@@ -2,6 +2,7 @@
 using AuthRPolicy.Core.Permissions.Exceptions;
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AuthRPolicy.Core.Permissions
 {
@@ -31,6 +32,7 @@ namespace AuthRPolicy.Core.Permissions
             return MainName == mainPermissionName;
         }
 
+        [ExcludeFromCodeCoverage]
         private string GetDebuggerDisplay()
         {
             return $"{FullName} - {AccessPolicyType.FullName}";

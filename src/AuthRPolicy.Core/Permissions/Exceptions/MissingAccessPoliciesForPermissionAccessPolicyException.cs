@@ -1,5 +1,6 @@
 ﻿using AuthRPolicy.Core.Exceptions;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 namespace AuthRPolicy.Core.Permissions.Exceptions
@@ -17,6 +18,7 @@ namespace AuthRPolicy.Core.Permissions.Exceptions
         {
         }
 
+        [ExcludeFromCodeCoverage]
         protected MissingAccessPoliciesForPermissionAccessPolicyException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

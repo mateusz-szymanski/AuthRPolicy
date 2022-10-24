@@ -1,5 +1,6 @@
 ﻿using AuthRPolicy.Core.Roles.Exceptions;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AuthRPolicy.Core.Roles
 {
@@ -16,6 +17,7 @@ namespace AuthRPolicy.Core.Roles
             Name = name;
         }
 
+        [ExcludeFromCodeCoverage]
         private string GetDebuggerDisplay()
         {
             return Name;

@@ -25,4 +25,22 @@
     <ProjectReference Include="..\..\src\AuthRPolicy.MediatRExtensions\AuthRPolicy.MediatRExtensions.csproj" />
   </ItemGroup>
 
+  <PropertyGroup Label="FineCodeCoverage">
+    <Enabled>
+      True
+    </Enabled>
+    <Exclude>
+      [AuthRPolicy.MediatRExtensions.TestAssemblies.*]*
+    </Exclude>
+    <Include>
+      [*]*
+    </Include>
+    <ExcludeByFile>
+      **/Migrations/*
+    </ExcludeByFile>
+    <IncludeTestAssembly>
+      False
+    </IncludeTestAssembly>
+  </PropertyGroup>
+
 </Project>

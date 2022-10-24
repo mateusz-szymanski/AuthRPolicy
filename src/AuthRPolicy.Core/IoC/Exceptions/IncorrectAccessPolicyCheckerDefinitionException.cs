@@ -1,5 +1,6 @@
 ﻿using AuthRPolicy.Core.Exceptions;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 namespace AuthRPolicy.Core.IoC.Exceptions
@@ -17,6 +18,7 @@ namespace AuthRPolicy.Core.IoC.Exceptions
         {
         }
 
+        [ExcludeFromCodeCoverage]
         protected IncorrectAccessPolicyCheckerDefinitionException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

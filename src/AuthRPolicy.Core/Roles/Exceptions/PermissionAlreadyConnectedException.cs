@@ -1,6 +1,7 @@
 ﻿using AuthRPolicy.Core.Exceptions;
 using AuthRPolicy.Core.Permissions;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 namespace AuthRPolicy.Core.Roles.Exceptions
@@ -18,6 +19,7 @@ namespace AuthRPolicy.Core.Roles.Exceptions
         {
         }
 
+        [ExcludeFromCodeCoverage]
         protected PermissionAlreadyConnectedException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

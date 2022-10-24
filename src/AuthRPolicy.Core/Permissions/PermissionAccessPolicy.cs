@@ -2,6 +2,7 @@
 using AuthRPolicy.Core.Permissions.Exceptions;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace AuthRPolicy.Core.Permissions
@@ -21,6 +22,7 @@ namespace AuthRPolicy.Core.Permissions
         public string PermissionMainName { get; }
         public IEnumerable<IAccessPolicy> AccessPolicies { get; }
 
+        [ExcludeFromCodeCoverage]
         private string GetDebuggerDisplay()
         {
             return $"{PermissionMainName}({AccessPolicies.Count()})";
