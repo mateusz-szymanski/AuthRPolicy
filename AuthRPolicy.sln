@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		finecodecoverage-settings.xml = finecodecoverage-settings.xml
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
@@ -31,9 +32,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthRPolicy.Core.TestAssemb
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{CB940ABE-BB55-4C78-A011-722ECF8A17EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthRPolicy.Sample", "sample\AuthRPolicy.Sample\AuthRPolicy.Sample.csproj", "{A8F6B394-CB20-4B9B-A436-F6B8226ACB32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthRPolicy.Sample", "sample\AuthRPolicy.Sample\AuthRPolicy.Sample.csproj", "{A8F6B394-CB20-4B9B-A436-F6B8226ACB32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthRPolicy.MediatRExtensions.Tests", "tests\AuthRPolicy.MediatRExtensions.Tests\AuthRPolicy.MediatRExtensions.Tests.csproj", "{4CA565D8-143B-47DF-93CE-80A0ADEBCE96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthRPolicy.MediatRExtensions.Tests", "tests\AuthRPolicy.MediatRExtensions.Tests\AuthRPolicy.MediatRExtensions.Tests.csproj", "{4CA565D8-143B-47DF-93CE-80A0ADEBCE96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

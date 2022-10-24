@@ -1,0 +1,18 @@
+<FineCodeCoverage>
+  <Enabled>
+    True
+  </Enabled>
+  <Exclude>
+    [AuthRPolicy.Core.TestAssemblies.*]*
+    [AuthRPolicy.MediatRExtensions.TestAssemblies.*]*
+  </Exclude>
+  <Include>
+    [*]*
+  </Include>
+  <ExcludeByFile>
+    **/Migrations/*
+  </ExcludeByFile>
+  <IncludeTestAssembly>
+    False
+  </IncludeTestAssembly>
+</FineCodeCoverage>

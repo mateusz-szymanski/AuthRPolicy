@@ -1,60 +1,42 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<Nullable>enable</Nullable>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
 
-		<IsPackable>false</IsPackable>
-	</PropertyGroup>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
-		<PackageReference Include="Moq" Version="4.18.2" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.46.0.54807">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="xunit" Version="2.4.2" />
-		<PackageReference Include="xunit.analyzers" Version="1.0.0" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-			<PrivateAssets>all</PrivateAssets>
-		</PackageReference>
-		<PackageReference Include="coverlet.collector" Version="3.1.2">
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-			<PrivateAssets>all</PrivateAssets>
-		</PackageReference>
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+    <PackageReference Include="Moq" Version="4.18.2" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.46.0.54807">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.analyzers" Version="1.0.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="3.1.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\..\src\AuthRPolicy.Core\AuthRPolicy.Core.csproj" />
-		<ProjectReference Include="..\..\src\AuthRPolicy.MediatRExtensions\AuthRPolicy.MediatRExtensions.csproj" />
-		<ProjectReference Include="..\TestAssemblies\AuthRPolicy.Core.TestAssemblies.EmptyAssembly\AuthRPolicy.Core.TestAssemblies.EmptyAssembly.csproj" />
-		<ProjectReference Include="..\TestAssemblies\AuthRPolicy.Core.TestAssemblies.MissingChecker\AuthRPolicy.Core.TestAssemblies.MissingChecker.csproj" />
-		<ProjectReference Include="..\TestAssemblies\AuthRPolicy.Core.TestAssemblies.ValidCheckers\AuthRPolicy.Core.TestAssemblies.ValidCheckers.csproj" />
-	</ItemGroup>
-
-	<PropertyGroup Label="FineCodeCoverage">
-		<Enabled>
-			True
-		</Enabled>
-		<Exclude>
-      [AuthRPolicy.Core.TestAssemblies.*]*
-    </Exclude>
-		<Include>
-			[*]*
-		</Include>
-		<ExcludeByFile>
-			**/Migrations/*
-		</ExcludeByFile>
-		<IncludeTestAssembly>
-			False
-		</IncludeTestAssembly>
-	</PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AuthRPolicy.Core\AuthRPolicy.Core.csproj" />
+    <ProjectReference Include="..\..\src\AuthRPolicy.MediatRExtensions\AuthRPolicy.MediatRExtensions.csproj" />
+    <ProjectReference Include="..\TestAssemblies\AuthRPolicy.Core.TestAssemblies.EmptyAssembly\AuthRPolicy.Core.TestAssemblies.EmptyAssembly.csproj" />
+    <ProjectReference Include="..\TestAssemblies\AuthRPolicy.Core.TestAssemblies.MissingChecker\AuthRPolicy.Core.TestAssemblies.MissingChecker.csproj" />
+    <ProjectReference Include="..\TestAssemblies\AuthRPolicy.Core.TestAssemblies.ValidCheckers\AuthRPolicy.Core.TestAssemblies.ValidCheckers.csproj" />
+  </ItemGroup>
 
 </Project>
