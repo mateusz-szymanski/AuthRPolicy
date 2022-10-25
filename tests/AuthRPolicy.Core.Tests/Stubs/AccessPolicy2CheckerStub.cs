@@ -1,5 +1,4 @@
-﻿using AuthRPolicy.Core;
-using AuthRPolicy.Core.AccessPolicy;
+﻿using AuthRPolicy.Core.AccessPolicy;
 using System;
 
 namespace AuthRPolicy.Core.Tests.Stubs
