@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
-namespace AuthRPolicy.MediatRExtensions.Exceptions
+namespace AuthRPolicy.MediatRExtensions.Services.Exceptions
 {
     [Serializable]
     public class MissingUserNameClaimException : AuthorizationException

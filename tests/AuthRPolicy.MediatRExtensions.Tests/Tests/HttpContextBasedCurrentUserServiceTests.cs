@@ -1,6 +1,6 @@
 ﻿using AuthRPolicy.Core.Roles;
-using AuthRPolicy.MediatRExtensions.Exceptions;
 using AuthRPolicy.MediatRExtensions.Services;
+using AuthRPolicy.MediatRExtensions.Services.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
