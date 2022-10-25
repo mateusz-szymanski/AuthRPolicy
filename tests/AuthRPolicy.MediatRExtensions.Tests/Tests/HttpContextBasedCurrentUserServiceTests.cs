@@ -1,5 +1,6 @@
 ﻿using AuthRPolicy.MediatRExtensions.Services;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 using System.Security.Claims;
 using System.Threading;
@@ -31,7 +32,9 @@ namespace AuthRPolicy.MediatRExtensions.Tests.Tests
             var httpContextAccessorMock = new Mock<IHttpContextAccessor>();
             httpContextAccessorMock.Setup(hcam => hcam.HttpContext).Returns(httpContext);
 
-            var httpContextBasedCurrentUserService = new HttpContextBasedCurrentUserService(httpContextAccessorMock.Object);
+            var logger = new NullLogger<HttpContextBasedCurrentUserService>();
+
+            var httpContextBasedCurrentUserService = new HttpContextBasedCurrentUserService(httpContextAccessorMock.Object, logger);
 
             // Act
             var currentUser = await httpContextBasedCurrentUserService.GetCurrentUser(CancellationToken.None);

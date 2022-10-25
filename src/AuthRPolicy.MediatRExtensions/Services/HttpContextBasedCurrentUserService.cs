@@ -1,16 +1,22 @@
 ﻿using AuthRPolicy.Core;
 using AuthRPolicy.Core.Roles;
+using AuthRPolicy.MediatRExtensions.Exceptions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace AuthRPolicy.MediatRExtensions.Services
 {
     internal class HttpContextBasedCurrentUserService : ICurrentUserService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ILogger<HttpContextBasedCurrentUserService> _logger;
 
-        public HttpContextBasedCurrentUserService(IHttpContextAccessor httpContextAccessor)
+        public HttpContextBasedCurrentUserService(
+            IHttpContextAccessor httpContextAccessor,
+            ILogger<HttpContextBasedCurrentUserService> logger)
         {
             _httpContextAccessor = httpContextAccessor;
+            _logger = logger;
         }
 
         public Task<User> GetCurrentUser(CancellationToken cancellationToken)
@@ -25,11 +31,11 @@ namespace AuthRPolicy.MediatRExtensions.Services
             var roles = claims.Where(c => c.Type == roleClaimType).Select(c => new Role(c.Value));
 
             if (string.IsNullOrEmpty(userName))
-            {
-                throw new Exception(); // TODO:
-            }
+                throw MissingUserNameClaimException.New(userNameClaimType);
 
             var user = new User(userName, roles);
+
+            _logger.LogDebug("User {userName} assigned roles: {roles}", userName, roles.Select(r => r.Name));
 
             return Task.FromResult(user);
         }
