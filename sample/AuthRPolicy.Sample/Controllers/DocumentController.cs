@@ -1,5 +1,5 @@
 using AuthRPolicy.Sample.Commands;
-using AuthRPolicy.Sample.Queries;
+using AuthRPolicy.Sample.Features.GetDocument;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

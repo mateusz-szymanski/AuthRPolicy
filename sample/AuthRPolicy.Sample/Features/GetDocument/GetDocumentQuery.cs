@@ -4,7 +4,7 @@ using AuthRPolicy.Sample.Authorization.Permissions;
 using AuthRPolicy.Sample.Commands;
 using MediatR;
 
-namespace AuthRPolicy.Sample.Queries
+namespace AuthRPolicy.Sample.Features.GetDocument
 {
     public class GetDocumentQuery : IRequest<Document>, IAuthorizedRequest
     {
