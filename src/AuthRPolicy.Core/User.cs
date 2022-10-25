@@ -7,7 +7,7 @@ namespace AuthRPolicy.Core
 {
     public class User
     {
-        public string UserName { get; } // TODO: consider UserName type
+        public string UserName { get; } // TODO: consider UserName type or UserId
         public IEnumerable<Role> Roles { get; }
 
         public User(string userName, IEnumerable<Role> roles)
