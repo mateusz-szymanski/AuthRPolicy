@@ -1,6 +1,6 @@
 ﻿using AuthRPolicy.Core;
 using AuthRPolicy.Core.AccessPolicy;
-using AuthRPolicy.Sample.Commands;
+using AuthRPolicy.Sample.Domain.DocumentAggregate;
 
 namespace AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentOwner
 {
@@ -15,8 +15,8 @@ namespace AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentOwner
 
         public bool HasAccess(User user, DocumentOwnerAccessPolicy accessPolicy)
         {
-            var documentOwner = _documentRepository.GetDocumentOwner(accessPolicy.DocumentId);
-            return documentOwner == user.UserName;
+            var document = _documentRepository.GetDocument(accessPolicy.DocumentId);
+            return document.Owner == user.UserName;
         }
     }
 }

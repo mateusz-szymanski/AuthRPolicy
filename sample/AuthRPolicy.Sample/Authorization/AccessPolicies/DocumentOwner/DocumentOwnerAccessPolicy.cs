@@ -1,5 +1,5 @@
 ﻿using AuthRPolicy.Core.AccessPolicy;
-using AuthRPolicy.Sample.Commands;
+using AuthRPolicy.Sample.Domain.DocumentAggregate;
 
 namespace AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentOwner
 {

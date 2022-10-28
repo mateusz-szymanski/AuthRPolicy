@@ -1,8 +1,9 @@
 ﻿using AuthRPolicy.Core.Permissions;
 using AuthRPolicy.MediatRExtensions;
 using AuthRPolicy.Sample.Authorization.Permissions;
-using AuthRPolicy.Sample.Commands;
+using AuthRPolicy.Sample.Domain.DocumentAggregate;
 using MediatR;
+using System;
 
 namespace AuthRPolicy.Sample.Features.GetDocument
 {
@@ -10,7 +11,7 @@ namespace AuthRPolicy.Sample.Features.GetDocument
     {
         public DocumentId DocumentId { get; }
 
-        public GetDocumentQuery(int documentId)
+        public GetDocumentQuery(Guid documentId)
         {
             DocumentId = new(documentId);
         }

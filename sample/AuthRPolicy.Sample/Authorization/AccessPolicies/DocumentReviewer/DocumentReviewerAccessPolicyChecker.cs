@@ -1,6 +1,6 @@
 ﻿using AuthRPolicy.Core;
 using AuthRPolicy.Core.AccessPolicy;
-using AuthRPolicy.Sample.Commands;
+using AuthRPolicy.Sample.Domain.DocumentAggregate;
 
 namespace AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentReviewer
 {
@@ -15,8 +15,8 @@ namespace AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentReviewer
 
         public bool HasAccess(User user, DocumentReviewerAccessPolicy accessPolicy)
         {
-            var documentReviewer = _documentRepository.GetDocumentReviewer(accessPolicy.DocumentId);
-            return documentReviewer == user.UserName;
+            var document = _documentRepository.GetDocument(accessPolicy.DocumentId);
+            return document.Reviewer == user.UserName;
         }
     }
 }

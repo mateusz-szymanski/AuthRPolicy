@@ -1,7 +1,8 @@
-using AuthRPolicy.Sample.Commands;
+using AuthRPolicy.Sample.Domain.DocumentAggregate;
 using AuthRPolicy.Sample.Features.GetDocument;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace AuthRPolicy.Sample.Controllers
@@ -18,7 +19,7 @@ namespace AuthRPolicy.Sample.Controllers
         }
 
         [HttpGet("{documentId}")]
-        public async Task<Document> GetDocuments(int documentId)
+        public async Task<Document> GetDocuments(Guid documentId)
         {
             return await _mediator.Send(new GetDocumentQuery(documentId));
         }
