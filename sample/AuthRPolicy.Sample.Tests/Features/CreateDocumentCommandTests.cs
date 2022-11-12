@@ -9,8 +9,15 @@ using Xunit;
 
 namespace AuthRPolicy.Sample.Tests.Features
 {
-    public class CreateDocumentCommandTests
+    public class CreateDocumentCommandTests : IClassFixture<EmptyDatabaseFixture>
     {
+        private readonly EmptyDatabaseFixture _emptyDatabaseFixture;
+
+        public CreateDocumentCommandTests(EmptyDatabaseFixture emptyDatabaseFixture)
+        {
+            _emptyDatabaseFixture = emptyDatabaseFixture;
+        }
+
         [Fact]
         public async Task Handler_ShouldCreateDocument_GivenValidUser()
         {
@@ -22,7 +29,7 @@ namespace AuthRPolicy.Sample.Tests.Features
                 .WithRoles(Roles.DocumentCreator)
                 .Build();
 
-            await using var app = await new ApplicationBuilder()
+            await using var app = await new ApplicationBuilder(_emptyDatabaseFixture.StorageConfigurationProvider)
                 .Build();
 
             // Act
@@ -47,7 +54,7 @@ namespace AuthRPolicy.Sample.Tests.Features
                 .WithRoles(Roles.DocumentReviewer, Roles.Admin)
                 .Build();
 
-            await using var app = await new ApplicationBuilder()
+            await using var app = await new ApplicationBuilder(_emptyDatabaseFixture.StorageConfigurationProvider)
                 .Build();
 
             // Act
