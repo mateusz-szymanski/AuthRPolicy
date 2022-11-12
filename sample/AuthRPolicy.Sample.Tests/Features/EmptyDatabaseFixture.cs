@@ -1,5 +1,5 @@
 ﻿using AuthRPolicy.Sample.Infrastructure.EntityFramework;
-using AuthRPolicy.Sample.Tests.Initialization;
+using AuthRPolicy.Sample.Tests.Initialization.Storage;
 using System.Threading.Tasks;
 using Xunit;
 

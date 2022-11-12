@@ -1,7 +1,7 @@
 ﻿using AuthRPolicy.MediatRExtensions.Services;
-using AuthRPolicy.Sample.Infrastructure.EntityFramework;
 using AuthRPolicy.Sample.IoC;
 using AuthRPolicy.Sample.Tests.Extensions;
+using AuthRPolicy.Sample.Tests.Initialization.Storage;
 using AuthRPolicy.Sample.Tests.UserMocking;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +26,7 @@ namespace AuthRPolicy.Sample.Tests.Initialization
         {
             _storageConfigurationProvider = storageConfigurationProvider;
             _createDatabase = false;
+
             return this;
         }
 
@@ -45,11 +46,7 @@ namespace AuthRPolicy.Sample.Tests.Initialization
                 .AddSingleton<UserSwitcher, UserSwitcher>()
                 .ReplaceService<ICurrentUserService>(sp => sp.GetRequiredService<UserSwitcher>(), ServiceLifetime.Singleton);
 
-            services.AddSingleton<IStorageManager, StorageManager>(
-                sp => new StorageManager(sp.GetRequiredService<IDbContextFactory<SampleDbContext>>(), _createDatabase)
-            );
-
-            ConfigureDatabase(services, _storageConfigurationProvider);
+            ConfigureDatabase(services, _storageConfigurationProvider, _createDatabase);
 
             var serviceProvider = services.BuildServiceProvider();
 
@@ -59,8 +56,18 @@ namespace AuthRPolicy.Sample.Tests.Initialization
             return application;
         }
 
-        private static void ConfigureDatabase(IServiceCollection services, StorageConfigurationProvider storageConfigurationProvider)
+        private static void ConfigureDatabase(
+            IServiceCollection services,
+            StorageConfigurationProvider storageConfigurationProvider,
+            bool createDatabase)
         {
+            services.AddSingleton<IStorageManager, StorageManager>();
+
+            if (createDatabase)
+                services.AddSingleton<IStorageManagerStrategy, StorageManagerRecreateStrategy>();
+            else
+                services.AddSingleton<IStorageManagerStrategy, StorageManagerRespawnStrategy>();
+
             var dbContextOptions = storageConfigurationProvider.GetDbOptions();
 
             services.ReplaceService<DbContextOptions>(dbContextOptions);

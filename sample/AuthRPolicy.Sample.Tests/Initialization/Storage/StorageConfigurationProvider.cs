@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Data.Common;
 
-namespace AuthRPolicy.Sample.Tests.Initialization
+namespace AuthRPolicy.Sample.Tests.Initialization.Storage
 {
     public class StorageConfigurationProvider
     {
