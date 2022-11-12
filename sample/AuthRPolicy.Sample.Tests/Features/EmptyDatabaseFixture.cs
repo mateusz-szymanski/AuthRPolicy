@@ -11,7 +11,7 @@ namespace AuthRPolicy.Sample.Tests.Features
 
         public EmptyDatabaseFixture()
         {
-            StorageConfigurationProvider = new StorageConfigurationProvider();
+            StorageConfigurationProvider = new();
         }
 
         public async Task InitializeAsync()

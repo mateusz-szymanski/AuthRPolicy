@@ -29,7 +29,8 @@ namespace AuthRPolicy.Sample.Tests.Features
                 .WithRoles(Roles.DocumentCreator)
                 .Build();
 
-            await using var app = await new ApplicationBuilder(_emptyDatabaseFixture.StorageConfigurationProvider)
+            await using var app = await new ApplicationBuilder()
+                .WithExistingDatabase(_emptyDatabaseFixture.StorageConfigurationProvider)
                 .Build();
 
             // Act
@@ -54,7 +55,8 @@ namespace AuthRPolicy.Sample.Tests.Features
                 .WithRoles(Roles.DocumentReviewer, Roles.Admin)
                 .Build();
 
-            await using var app = await new ApplicationBuilder(_emptyDatabaseFixture.StorageConfigurationProvider)
+            await using var app = await new ApplicationBuilder()
+                .WithExistingDatabase(_emptyDatabaseFixture.StorageConfigurationProvider)
                 .Build();
 
             // Act

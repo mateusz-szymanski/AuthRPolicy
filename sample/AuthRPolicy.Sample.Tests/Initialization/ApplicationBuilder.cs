@@ -1,4 +1,5 @@
 ﻿using AuthRPolicy.MediatRExtensions.Services;
+using AuthRPolicy.Sample.Infrastructure.EntityFramework;
 using AuthRPolicy.Sample.IoC;
 using AuthRPolicy.Sample.Tests.Extensions;
 using AuthRPolicy.Sample.Tests.UserMocking;
@@ -12,11 +13,20 @@ namespace AuthRPolicy.Sample.Tests.Initialization
 {
     public class ApplicationBuilder
     {
-        private readonly StorageConfigurationProvider _storageConfigurationProvider;
+        private bool _createDatabase;
+        private StorageConfigurationProvider _storageConfigurationProvider;
 
-        public ApplicationBuilder(StorageConfigurationProvider storageConfigurationProvider)
+        public ApplicationBuilder()
+        {
+            _storageConfigurationProvider = new();
+            _createDatabase = true;
+        }
+
+        public ApplicationBuilder WithExistingDatabase(StorageConfigurationProvider storageConfigurationProvider)
         {
             _storageConfigurationProvider = storageConfigurationProvider;
+            _createDatabase = false;
+            return this;
         }
 
         public async Task<IApplication> Build()
@@ -35,7 +45,9 @@ namespace AuthRPolicy.Sample.Tests.Initialization
                 .AddSingleton<UserSwitcher, UserSwitcher>()
                 .ReplaceService<ICurrentUserService>(sp => sp.GetRequiredService<UserSwitcher>(), ServiceLifetime.Singleton);
 
-            services.AddSingleton<IStorageManager, StorageManager>();
+            services.AddSingleton<IStorageManager, StorageManager>(
+                sp => new StorageManager(sp.GetRequiredService<IDbContextFactory<SampleDbContext>>(), _createDatabase)
+            );
 
             ConfigureDatabase(services, _storageConfigurationProvider);
 
