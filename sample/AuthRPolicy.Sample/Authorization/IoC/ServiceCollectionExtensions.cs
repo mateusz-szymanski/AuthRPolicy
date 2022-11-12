@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AuthRPolicy.Sample.Authorization.IoC
 {
-    public static class ServiceCollectionExtensions
+    internal static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddApplicationAuthorization(this IServiceCollection services)
         {

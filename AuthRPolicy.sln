@@ -36,6 +36,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthRPolicy.Sample", "sampl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthRPolicy.MediatRExtensions.Tests", "tests\AuthRPolicy.MediatRExtensions.Tests\AuthRPolicy.MediatRExtensions.Tests.csproj", "{4CA565D8-143B-47DF-93CE-80A0ADEBCE96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthRPolicy.Sample.Tests", "sample\AuthRPolicy.Sample.Tests\AuthRPolicy.Sample.Tests.csproj", "{AA8D87EC-CFE9-4DDE-8DE1-E80AF8AED274}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{4CA565D8-143B-47DF-93CE-80A0ADEBCE96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CA565D8-143B-47DF-93CE-80A0ADEBCE96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CA565D8-143B-47DF-93CE-80A0ADEBCE96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA8D87EC-CFE9-4DDE-8DE1-E80AF8AED274}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA8D87EC-CFE9-4DDE-8DE1-E80AF8AED274}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA8D87EC-CFE9-4DDE-8DE1-E80AF8AED274}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA8D87EC-CFE9-4DDE-8DE1-E80AF8AED274}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +94,7 @@ Global
 		{2F868C01-A006-415E-B517-04C6E6BD2597} = {5A634F3B-C136-48FB-A96F-D9DC0495A733}
 		{A8F6B394-CB20-4B9B-A436-F6B8226ACB32} = {CB940ABE-BB55-4C78-A011-722ECF8A17EB}
 		{4CA565D8-143B-47DF-93CE-80A0ADEBCE96} = {FB8A28F9-B345-4431-86A2-E239CC1C80D0}
+		{AA8D87EC-CFE9-4DDE-8DE1-E80AF8AED274} = {CB940ABE-BB55-4C78-A011-722ECF8A17EB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7A458598-F4C8-4C4D-95B4-1BBEC12A6377}

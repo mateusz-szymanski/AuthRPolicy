@@ -1,11 +1,15 @@
-﻿namespace AuthRPolicy.Sample.Domain.DocumentAggregate
+﻿using System;
+
+namespace AuthRPolicy.Sample.Domain.DocumentAggregate
 {
     public class Document
     {
-        public DocumentId DocumentId { get; set; }
-        public string Title { get; set; }
-        public string Owner { get; set; }
-        public string Reviewer { get; set; }
+        public int Id { get; private set; }
+        public DocumentId DocumentId { get; private set; }
+        public string Title { get; private set; }
+        public string Owner { get; private set; }
+        public string Reviewer { get; private set; }
+        public DateTime? ReviewedOn { get; private set; }
 
         public Document(string title, string owner, string reviewer)
         {
@@ -13,6 +17,11 @@
             Title = title;
             Owner = owner;
             Reviewer = reviewer;
+        }
+
+        public void Review()
+        {
+            ReviewedOn = DateTime.UtcNow;
         }
     }
 }

@@ -30,7 +30,7 @@ namespace AuthRPolicy.Sample.Features.CreateDocument
 
             var document = new Document(request.Title, owner, request.Reviewer);
 
-            await _documentRepository.Add(document);
+            await _documentRepository.Add(document, cancellationToken);
 
             await _unitOfWork.SaveChanges();
         }
