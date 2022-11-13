@@ -30,9 +30,12 @@ namespace AuthRPolicy.Sample.Tests.Initialization
             await storageManager.InitializeStorage();
         }
 
-        public ValueTask DisposeAsync()
+        public async ValueTask DisposeAsync()
         {
-            return _services.DisposeAsync();
+            var storageManager = Services.GetRequiredService<IStorageManager>();
+            await storageManager.CleanupStorage();
+
+            await _services.DisposeAsync();
         }
     }
 }

@@ -34,18 +34,20 @@ namespace AuthRPolicy.Sample.Tests.Initialization
             var services = new ServiceCollection();
 
             var configuration = new ConfigurationBuilder()
+                .AddConnectionString(_connectionStringProvider)
                 .Build();
 
             services
+                .AddSingleton<IConfiguration>(configuration)
                 .AddNullLogger()
-                .AddApplicationServices(configuration)
+                .AddApplicationServices()
                 .AddMediatR(typeof(ApplicationBuilder).Assembly);
 
             services
                 .AddSingleton<UserSwitcher, UserSwitcher>()
                 .ReplaceService<ICurrentUserService>(sp => sp.GetRequiredService<UserSwitcher>(), ServiceLifetime.Singleton);
 
-            services.ConfigureStorage(_connectionStringProvider, _storageManagerStrategy);
+            services.AddStorageManager(_storageManagerStrategy);
 
             var serviceProvider = services.BuildServiceProvider();
 

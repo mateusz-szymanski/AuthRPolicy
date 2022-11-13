@@ -1,15 +1,13 @@
-﻿using AuthRPolicy.Sample.Infrastructure.EntityFramework;
-using AuthRPolicy.Sample.Tests.Extensions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 
 namespace AuthRPolicy.Sample.Tests.Initialization.Storage
 {
-    public static class ServiceCollectionExtensions
+    public static class Extensions
     {
-        public static IServiceCollection ConfigureStorage(
+        public static IServiceCollection AddStorageManager(
             this IServiceCollection services,
-            ConnectionStringProvider connectionStringProvider,
             StorageManagerStrategy storageManagerStrategy)
         {
             services.AddSingleton<IStorageManager, StorageManager>();
@@ -19,15 +17,22 @@ namespace AuthRPolicy.Sample.Tests.Initialization.Storage
             else
                 services.AddSingleton<IStorageManagerStrategy, StorageManagerRecreateStrategy>();
 
-            var connectionString = connectionStringProvider.GetConnectionString();
-            var dbContextOptions = new DbContextOptionsBuilder<SampleDbContext>()
-                .UseSqlServer(connectionString)
-                .Options;
-
-            services.ReplaceService<DbContextOptions>(dbContextOptions);
-            services.ReplaceService(dbContextOptions);
-
             return services;
+        }
+
+        public static ConfigurationBuilder AddConnectionString(
+            this ConfigurationBuilder configurationBuilder,
+            ConnectionStringProvider connectionStringProvider)
+        {
+            var connectionString = connectionStringProvider.GetConnectionString();
+
+            configurationBuilder.AddInMemoryCollection(
+                new Dictionary<string, string> {
+                    { "ConnectionStrings:Sample", connectionString }
+                }
+            );
+
+            return configurationBuilder;
         }
     }
 }

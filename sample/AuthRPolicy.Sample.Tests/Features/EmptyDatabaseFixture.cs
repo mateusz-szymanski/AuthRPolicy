@@ -18,13 +18,15 @@ namespace AuthRPolicy.Sample.Tests.Features
             ConnectionStringProvider = new();
 
             var configuration = new ConfigurationBuilder()
+                .AddConnectionString(ConnectionStringProvider)
                 .Build();
 
             var services = new ServiceCollection();
 
             services
-                .AddEntityFramework(configuration)
-                .ConfigureStorage(ConnectionStringProvider, StorageManagerStrategy.Recreate);
+                .AddSingleton<IConfiguration>(configuration)
+                .AddEntityFramework()
+                .AddStorageManager(StorageManagerStrategy.Recreate);
 
             _serviceProvider = services.BuildServiceProvider();
         }
@@ -32,12 +34,14 @@ namespace AuthRPolicy.Sample.Tests.Features
         public async Task InitializeAsync()
         {
             var storageManager = _serviceProvider.GetRequiredService<IStorageManager>();
-
             await storageManager.InitializeStorage();
         }
 
         public async Task DisposeAsync()
         {
+            var storageManager = _serviceProvider.GetRequiredService<IStorageManager>();
+            await storageManager.CleanupStorage();
+
             await _serviceProvider.DisposeAsync();
         }
     }

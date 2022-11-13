@@ -21,7 +21,7 @@ namespace AuthRPolicy.Sample.Tests.Initialization.Storage
             }
         }
 
-        public async ValueTask DisposeAsync()
+        public async Task CleanupStorage()
         {
             foreach (var strategy in _storageManagerStrategies)
             {

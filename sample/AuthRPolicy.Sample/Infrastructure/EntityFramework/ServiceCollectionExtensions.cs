@@ -1,19 +1,17 @@
 ﻿using AuthRPolicy.Sample.Domain;
 using AuthRPolicy.Sample.Domain.DocumentAggregate;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AuthRPolicy.Sample.Infrastructure.EntityFramework
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddEntityFramework(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddEntityFramework(this IServiceCollection services)
         {
-            var connectionString = configuration.GetConnectionString("sample");
             services.AddDbContextFactory<SampleDbContext>(options =>
             {
-                options.UseSqlServer(connectionString);
+                options.UseSqlServer("name=ConnectionStrings:Sample");
             });
 
             services.AddRepositories();
