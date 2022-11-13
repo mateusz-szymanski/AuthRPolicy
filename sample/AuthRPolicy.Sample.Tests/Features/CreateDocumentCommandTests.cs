@@ -30,7 +30,7 @@ namespace AuthRPolicy.Sample.Tests.Features
                 .Build();
 
             await using var app = await new ApplicationBuilder()
-                .WithExistingDatabase(_emptyDatabaseFixture.StorageConfigurationProvider)
+                .WithExistingDatabase(_emptyDatabaseFixture.ConnectionStringProvider)
                 .Build();
 
             // Act
@@ -56,7 +56,7 @@ namespace AuthRPolicy.Sample.Tests.Features
                 .Build();
 
             await using var app = await new ApplicationBuilder()
-                .WithExistingDatabase(_emptyDatabaseFixture.StorageConfigurationProvider)
+                .WithExistingDatabase(_emptyDatabaseFixture.ConnectionStringProvider)
                 .Build();
 
             // Act

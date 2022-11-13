@@ -13,17 +13,17 @@ namespace AuthRPolicy.Sample.Tests.Initialization
     public class ApplicationBuilder
     {
         private StorageManagerStrategy _storageManagerStrategy;
-        private StorageConfigurationProvider _storageConfigurationProvider;
+        private ConnectionStringProvider _connectionStringProvider;
 
         public ApplicationBuilder()
         {
-            _storageConfigurationProvider = new();
+            _connectionStringProvider = new();
             _storageManagerStrategy = StorageManagerStrategy.Recreate;
         }
 
-        public ApplicationBuilder WithExistingDatabase(StorageConfigurationProvider storageConfigurationProvider)
+        public ApplicationBuilder WithExistingDatabase(ConnectionStringProvider connectionStringProvider)
         {
-            _storageConfigurationProvider = storageConfigurationProvider;
+            _connectionStringProvider = connectionStringProvider;
             _storageManagerStrategy = StorageManagerStrategy.Respawn;
 
             return this;
@@ -45,7 +45,7 @@ namespace AuthRPolicy.Sample.Tests.Initialization
                 .AddSingleton<UserSwitcher, UserSwitcher>()
                 .ReplaceService<ICurrentUserService>(sp => sp.GetRequiredService<UserSwitcher>(), ServiceLifetime.Singleton);
 
-            services.ConfigureDatabase(_storageConfigurationProvider, _storageManagerStrategy);
+            services.ConfigureStorage(_connectionStringProvider, _storageManagerStrategy);
 
             var serviceProvider = services.BuildServiceProvider();
 

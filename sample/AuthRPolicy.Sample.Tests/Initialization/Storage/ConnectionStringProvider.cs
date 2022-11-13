@@ -1,20 +1,18 @@
-﻿using AuthRPolicy.Sample.Infrastructure.EntityFramework;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Data.Common;
 
 namespace AuthRPolicy.Sample.Tests.Initialization.Storage
 {
-    public class StorageConfigurationProvider
+    public class ConnectionStringProvider
     {
         private readonly Guid _databaseId;
 
-        public StorageConfigurationProvider()
+        public ConnectionStringProvider()
         {
             _databaseId = Guid.NewGuid();
         }
 
-        public DbContextOptions<SampleDbContext> GetDbOptions()
+        public string GetConnectionString()
         {
             var databaseName = $"sample-tests-{_databaseId}";
             var dbConnectionStringBuilder = new DbConnectionStringBuilder();
@@ -25,11 +23,7 @@ namespace AuthRPolicy.Sample.Tests.Initialization.Storage
 
             var connectionString = dbConnectionStringBuilder.ConnectionString;
 
-            var dbContextOptions = new DbContextOptionsBuilder<SampleDbContext>()
-                .UseSqlServer(connectionString)
-                .Options;
-
-            return dbContextOptions;
+            return connectionString;
         }
     }
 }

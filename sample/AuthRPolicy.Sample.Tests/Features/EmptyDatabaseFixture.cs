@@ -1,4 +1,4 @@
-﻿using AuthRPolicy.Sample.IoC;
+﻿using AuthRPolicy.Sample.Infrastructure.EntityFramework;
 using AuthRPolicy.Sample.Tests.Initialization.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,13 +9,13 @@ namespace AuthRPolicy.Sample.Tests.Features
 {
     public class EmptyDatabaseFixture : IAsyncLifetime
     {
-        public StorageConfigurationProvider StorageConfigurationProvider { get; private set; }
+        public ConnectionStringProvider ConnectionStringProvider { get; private set; }
 
         private readonly ServiceProvider _serviceProvider;
 
         public EmptyDatabaseFixture()
         {
-            StorageConfigurationProvider = new();
+            ConnectionStringProvider = new();
 
             var configuration = new ConfigurationBuilder()
                 .Build();
@@ -23,8 +23,8 @@ namespace AuthRPolicy.Sample.Tests.Features
             var services = new ServiceCollection();
 
             services
-                .AddApplicationServices(configuration)
-                .ConfigureDatabase(StorageConfigurationProvider, StorageManagerStrategy.Recreate);
+                .AddEntityFramework(configuration)
+                .ConfigureStorage(ConnectionStringProvider, StorageManagerStrategy.Recreate);
 
             _serviceProvider = services.BuildServiceProvider();
         }
