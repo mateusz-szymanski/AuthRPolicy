@@ -19,7 +19,7 @@ namespace AuthRPolicy.Sample.Infrastructure
             await _dbContext.AddAsync(document, cancellationToken);
         }
 
-        public Document GetDocument(DocumentId documentId)
+        public Task<Document> GetDocument(DocumentId documentId, CancellationToken cancellationToken)
         {
             throw new System.NotImplementedException();
         }

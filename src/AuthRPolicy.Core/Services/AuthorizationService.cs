@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AuthRPolicy.Core.Services
 {
@@ -36,7 +38,7 @@ namespace AuthRPolicy.Core.Services
             return userPermissions;
         }
 
-        public bool IsUserAuthorized(User user, PermissionAccessPolicy permissionAccessPolicy)
+        public async Task<bool> IsUserAuthorized(User user, PermissionAccessPolicy permissionAccessPolicy, CancellationToken cancellationToken)
         {
             _logger.LogDebug("Authorizing user {userName} for {permission}", user.UserName, permissionAccessPolicy.PermissionMainName);
 
@@ -60,7 +62,7 @@ namespace AuthRPolicy.Core.Services
 
             foreach (var accessPolicy in matchingAccessPolicies)
             {
-                var hasAccess = CheckAccessPolicy(user, accessPolicy);
+                var hasAccess = await CheckAccessPolicy(user, accessPolicy, cancellationToken);
 
                 if (hasAccess)
                 {
@@ -74,7 +76,7 @@ namespace AuthRPolicy.Core.Services
             return false;
         }
 
-        private bool CheckAccessPolicy(User user, IAccessPolicy accessPolicy)
+        private async Task<bool> CheckAccessPolicy(User user, IAccessPolicy accessPolicy, CancellationToken cancellationToken)
         {
             _logger.LogDebug("Checking {accessPolicy} access policy...", accessPolicy.Name);
 
@@ -87,9 +89,10 @@ namespace AuthRPolicy.Core.Services
                 throw MissingAccessPolicyCheckerException.New(accessPolicy);
 
             var hasAccessMethodInfo = accessPolicyCheckerType.GetMethod(nameof(IAccessPolicyChecker<IAccessPolicy>.HasAccess));
-            var hasAccessResult = hasAccessMethodInfo!.Invoke(accessPolicyChecker, new object[] { user, accessPolicy });
+            var hasAccessTaskObject = hasAccessMethodInfo!.Invoke(accessPolicyChecker, new object[] { user, accessPolicy, cancellationToken });
+            var hasAccessTask = hasAccessTaskObject as Task<bool>;
 
-            var hasAccess = (bool)hasAccessResult!;
+            var hasAccess = await hasAccessTask!;
 
             _logger.LogDebug("Access policy {accessPolicy} authorization result: {hasAccess}", accessPolicy.Name, hasAccess);
 

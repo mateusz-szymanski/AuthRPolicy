@@ -2,6 +2,8 @@
 using AuthRPolicy.Core.Roles;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace AuthRPolicy.Core.Tests.Tests.AccessPolicy
@@ -12,7 +14,7 @@ namespace AuthRPolicy.Core.Tests.Tests.AccessPolicy
         [InlineData("my-username", new string[0])]
         [InlineData("my-username", new[] { "role-1" })]
         [InlineData("my-username", new[] { "role-1", "role-2" })]
-        public void HasAccess_ShouldReturnTrue_GivenAnyUser(string userName, IEnumerable<string> roles)
+        public async Task HasAccess_ShouldReturnTrue_GivenAnyUser(string userName, IEnumerable<string> roles)
         {
             // Arrange
             var user = new User(userName, roles.Select(r => new Role(r)));
@@ -21,7 +23,7 @@ namespace AuthRPolicy.Core.Tests.Tests.AccessPolicy
             var emptyAccessPolicyChecker = new EmptyAccessPolicyChecker();
 
             // Act
-            var hasAccess = emptyAccessPolicyChecker.HasAccess(user, emptyAccessPolicy);
+            var hasAccess = await emptyAccessPolicyChecker.HasAccess(user, emptyAccessPolicy, CancellationToken.None);
 
             // Assert
             Assert.True(hasAccess);

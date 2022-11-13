@@ -1,9 +1,11 @@
-﻿namespace AuthRPolicy.Core.AccessPolicy
+﻿using System.Threading;
+using System.Threading.Tasks;
+
+namespace AuthRPolicy.Core.AccessPolicy
 {
-    // TODO: async api
     public interface IAccessPolicyChecker<in TAccessPolicy>
         where TAccessPolicy : IAccessPolicy
     {
-        bool HasAccess(User user, TAccessPolicy accessPolicy);
+        Task<bool> HasAccess(User user, TAccessPolicy accessPolicy, CancellationToken cancellationToken);
     }
 }

@@ -1,6 +1,8 @@
 ﻿using AuthRPolicy.Core;
 using AuthRPolicy.Core.AccessPolicy;
 using AuthRPolicy.Sample.Domain.DocumentAggregate;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentOwner
 {
@@ -13,10 +15,12 @@ namespace AuthRPolicy.Sample.Authorization.AccessPolicies.DocumentOwner
             _documentRepository = documentRepository;
         }
 
-        public bool HasAccess(User user, DocumentOwnerAccessPolicy accessPolicy)
+        public async Task<bool> HasAccess(User user, DocumentOwnerAccessPolicy accessPolicy, CancellationToken cancellationToken)
         {
-            var document = _documentRepository.GetDocument(accessPolicy.DocumentId);
-            return document.Owner == user.UserName;
+            var document = await _documentRepository.GetDocument(accessPolicy.DocumentId, cancellationToken);
+            var hasAccess = document.Owner == user.UserName;
+
+            return hasAccess;
         }
     }
 }

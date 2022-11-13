@@ -1,5 +1,7 @@
 ﻿using AuthRPolicy.Core.AccessPolicy;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AuthRPolicy.Core.Tests.Stubs
 {
@@ -18,9 +20,10 @@ namespace AuthRPolicy.Core.Tests.Stubs
             return this;
         }
 
-        public bool HasAccess(User user, AccessPolicy3Stub accessPolicy)
+        public Task<bool> HasAccess(User user, AccessPolicy3Stub accessPolicy, CancellationToken cancellationToken)
         {
-            return _hasAccessFunc(user, accessPolicy);
+            var hasAccess = _hasAccessFunc(user, accessPolicy);
+            return Task.FromResult(hasAccess);
         }
     }
 }

@@ -7,6 +7,7 @@ using AuthRPolicy.Core.Tests.Assertions;
 using AuthRPolicy.Core.Tests.IoC;
 using AuthRPolicy.Core.Tests.Stubs;
 using Microsoft.Extensions.DependencyInjection;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -52,7 +53,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var authorizationService = serviceScope.ServiceProvider.GetRequiredService<IAuthorizationService>();
 
             // Act
-            var isUserAuthorized = authorizationService.IsUserAuthorized(user, permissionAccessPolicy);
+            var isUserAuthorized = await authorizationService.IsUserAuthorized(user, permissionAccessPolicy, CancellationToken.None);
 
             // Assert
             Assert.False(isUserAuthorized);
@@ -97,7 +98,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var authorizationService = serviceScope.ServiceProvider.GetRequiredService<IAuthorizationService>();
 
             // Act
-            var isUserAuthorized = authorizationService.IsUserAuthorized(user, permissionAccessPolicy);
+            var isUserAuthorized = await authorizationService.IsUserAuthorized(user, permissionAccessPolicy, CancellationToken.None);
 
             // Assert
             Assert.False(isUserAuthorized);
@@ -136,7 +137,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var authorizationService = serviceScope.ServiceProvider.GetRequiredService<IAuthorizationService>();
 
             // Act
-            var isUserAuthorized = authorizationService.IsUserAuthorized(user, permissionAccessPolicy);
+            var isUserAuthorized = await authorizationService.IsUserAuthorized(user, permissionAccessPolicy, CancellationToken.None);
 
             // Assert
             Assert.False(isUserAuthorized);
@@ -184,7 +185,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var authorizationService = serviceScope.ServiceProvider.GetRequiredService<IAuthorizationService>();
 
             // Act
-            var isUserAuthorized = authorizationService.IsUserAuthorized(user, permissionAccessPolicy);
+            var isUserAuthorized = await authorizationService.IsUserAuthorized(user, permissionAccessPolicy, CancellationToken.None);
 
             // Assert
             Assert.False(isUserAuthorized);
@@ -234,7 +235,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var authorizationService = serviceScope.ServiceProvider.GetRequiredService<IAuthorizationService>();
 
             // Act
-            var isUserAuthorized = authorizationService.IsUserAuthorized(user, permissionAccessPolicy);
+            var isUserAuthorized = await authorizationService.IsUserAuthorized(user, permissionAccessPolicy, CancellationToken.None);
 
             // Assert
             Assert.False(isUserAuthorized);
@@ -270,7 +271,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var authorizationService = serviceScope.ServiceProvider.GetRequiredService<IAuthorizationService>();
 
             // Act
-            var isUserAuthorized = authorizationService.IsUserAuthorized(user, permissionAccessPolicy);
+            var isUserAuthorized = await authorizationService.IsUserAuthorized(user, permissionAccessPolicy, CancellationToken.None);
 
             // Assert
             Assert.True(isUserAuthorized);
@@ -328,7 +329,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
             var authorizationService = serviceScope.ServiceProvider.GetRequiredService<IAuthorizationService>();
 
             // Act
-            var isUserAuthorized = authorizationService.IsUserAuthorized(user, permissionAccessPolicy);
+            var isUserAuthorized = await authorizationService.IsUserAuthorized(user, permissionAccessPolicy, CancellationToken.None);
 
             // Assert
             Assert.True(isUserAuthorized);
@@ -365,7 +366,7 @@ namespace AuthRPolicy.Core.Tests.Tests.Services
 
             // Act
             // Assert
-            Assert.Throws<MissingAccessPolicyCheckerException>(() => authorizationService.IsUserAuthorized(user, permissionAccessPolicy));
+            await Assert.ThrowsAsync<MissingAccessPolicyCheckerException>(() => authorizationService.IsUserAuthorized(user, permissionAccessPolicy, CancellationToken.None));
         }
 
         #endregion

@@ -52,7 +52,7 @@ namespace AuthRPolicy.MediatRExtensions.Tests.Tests
             // Assert
             Assert.True(handled);
             currentUserServiceMock.Verify(s => s.GetCurrentUser(It.IsAny<CancellationToken>()), Times.Never);
-            authorizationServiceMock.Verify(s => s.IsUserAuthorized(It.IsAny<User>(), It.IsAny<PermissionAccessPolicy>()), Times.Never);
+            authorizationServiceMock.Verify(s => s.IsUserAuthorized(It.IsAny<User>(), It.IsAny<PermissionAccessPolicy>(), It.IsAny<CancellationToken>()), Times.Never);
             authorizationServiceMock.Verify(s => s.GetUserPermissions(It.IsAny<User>()), Times.Never);
         }
 
@@ -63,7 +63,9 @@ namespace AuthRPolicy.MediatRExtensions.Tests.Tests
             var user = new User("my-userName", new Role[0]);
 
             var authorizationServiceMock = new Mock<IAuthorizationService>();
-            authorizationServiceMock.Setup(asm => asm.IsUserAuthorized(It.IsAny<User>(), It.IsAny<PermissionAccessPolicy>())).Returns(true);
+            authorizationServiceMock
+                .Setup(asm => asm.IsUserAuthorized(It.IsAny<User>(), It.IsAny<PermissionAccessPolicy>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(true);
 
             var currentUserServiceMock = new Mock<ICurrentUserService>();
             currentUserServiceMock.Setup(cusm => cusm.GetCurrentUser(It.IsAny<CancellationToken>())).ReturnsAsync(user);
@@ -91,7 +93,7 @@ namespace AuthRPolicy.MediatRExtensions.Tests.Tests
             // Assert
             Assert.True(handled);
             currentUserServiceMock.Verify(s => s.GetCurrentUser(It.IsAny<CancellationToken>()), Times.Once);
-            authorizationServiceMock.Verify(s => s.IsUserAuthorized(user, permissionAccessPolicy), Times.Once);
+            authorizationServiceMock.Verify(s => s.IsUserAuthorized(user, permissionAccessPolicy, It.IsAny<CancellationToken>()), Times.Once);
             authorizationServiceMock.Verify(s => s.GetUserPermissions(It.IsAny<User>()), Times.Never);
         }
 
@@ -102,7 +104,9 @@ namespace AuthRPolicy.MediatRExtensions.Tests.Tests
             var user = new User("my-userName", new Role[0]);
 
             var authorizationServiceMock = new Mock<IAuthorizationService>();
-            authorizationServiceMock.Setup(asm => asm.IsUserAuthorized(It.IsAny<User>(), It.IsAny<PermissionAccessPolicy>())).Returns(false);
+            authorizationServiceMock
+                .Setup(asm => asm.IsUserAuthorized(It.IsAny<User>(), It.IsAny<PermissionAccessPolicy>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(false);
 
             var currentUserServiceMock = new Mock<ICurrentUserService>();
             currentUserServiceMock.Setup(cusm => cusm.GetCurrentUser(It.IsAny<CancellationToken>())).ReturnsAsync(user);
@@ -130,7 +134,7 @@ namespace AuthRPolicy.MediatRExtensions.Tests.Tests
             // Assert
             Assert.False(handled);
             currentUserServiceMock.Verify(s => s.GetCurrentUser(It.IsAny<CancellationToken>()), Times.Once);
-            authorizationServiceMock.Verify(s => s.IsUserAuthorized(user, permissionAccessPolicy), Times.Once);
+            authorizationServiceMock.Verify(s => s.IsUserAuthorized(user, permissionAccessPolicy, It.IsAny<CancellationToken>()), Times.Once);
             authorizationServiceMock.Verify(s => s.GetUserPermissions(It.IsAny<User>()), Times.Never);
         }
     }

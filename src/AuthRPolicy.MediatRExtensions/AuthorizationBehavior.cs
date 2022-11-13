@@ -33,7 +33,11 @@ namespace AuthRPolicy.MediatRExtensions
 
                 _logger.LogDebug("Authorizing user {userName} to execute {request}", currentUser.UserName, request.GetType().Name);
 
-                var isUserAuthorized = _authorizationService.IsUserAuthorized(currentUser, authorizedRequest.PermissionAccessPolicy);
+                var isUserAuthorized = await _authorizationService.IsUserAuthorized(
+                    currentUser,
+                    authorizedRequest.PermissionAccessPolicy,
+                    CancellationToken.None);
+
                 if (!isUserAuthorized)
                     throw UserUnauthorizedException.New(currentUser, authorizedRequest);
 
