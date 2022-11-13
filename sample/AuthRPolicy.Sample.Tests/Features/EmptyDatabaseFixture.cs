@@ -1,5 +1,7 @@
-﻿using AuthRPolicy.Sample.Infrastructure.EntityFramework;
+﻿using AuthRPolicy.Sample.IoC;
 using AuthRPolicy.Sample.Tests.Initialization.Storage;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -9,23 +11,34 @@ namespace AuthRPolicy.Sample.Tests.Features
     {
         public StorageConfigurationProvider StorageConfigurationProvider { get; private set; }
 
+        private readonly ServiceProvider _serviceProvider;
+
         public EmptyDatabaseFixture()
         {
             StorageConfigurationProvider = new();
+
+            var configuration = new ConfigurationBuilder()
+                .Build();
+
+            var services = new ServiceCollection();
+
+            services
+                .AddApplicationServices(configuration)
+                .ConfigureDatabase(StorageConfigurationProvider, StorageManagerStrategy.Recreate);
+
+            _serviceProvider = services.BuildServiceProvider();
         }
 
         public async Task InitializeAsync()
         {
-            using var dbContext = new SampleDbContext(StorageConfigurationProvider.GetDbOptions());
+            var storageManager = _serviceProvider.GetRequiredService<IStorageManager>();
 
-            await dbContext.Database.EnsureCreatedAsync();
+            await storageManager.InitializeStorage();
         }
 
         public async Task DisposeAsync()
         {
-            using var dbContext = new SampleDbContext(StorageConfigurationProvider.GetDbOptions());
-
-            await dbContext.Database.EnsureDeletedAsync();
+            await _serviceProvider.DisposeAsync();
         }
     }
 }

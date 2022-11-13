@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 
 namespace AuthRPolicy.Sample.Tests.Initialization.Storage
 {
-
     public class StorageManager : IStorageManager
     {
         private readonly IEnumerable<IStorageManagerStrategy> _storageManagerStrategies;

@@ -4,7 +4,6 @@ using AuthRPolicy.Sample.Tests.Extensions;
 using AuthRPolicy.Sample.Tests.Initialization.Storage;
 using AuthRPolicy.Sample.Tests.UserMocking;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
@@ -13,19 +12,19 @@ namespace AuthRPolicy.Sample.Tests.Initialization
 {
     public class ApplicationBuilder
     {
-        private bool _createDatabase;
+        private StorageManagerStrategy _storageManagerStrategy;
         private StorageConfigurationProvider _storageConfigurationProvider;
 
         public ApplicationBuilder()
         {
             _storageConfigurationProvider = new();
-            _createDatabase = true;
+            _storageManagerStrategy = StorageManagerStrategy.Recreate;
         }
 
         public ApplicationBuilder WithExistingDatabase(StorageConfigurationProvider storageConfigurationProvider)
         {
             _storageConfigurationProvider = storageConfigurationProvider;
-            _createDatabase = false;
+            _storageManagerStrategy = StorageManagerStrategy.Respawn;
 
             return this;
         }
@@ -46,7 +45,7 @@ namespace AuthRPolicy.Sample.Tests.Initialization
                 .AddSingleton<UserSwitcher, UserSwitcher>()
                 .ReplaceService<ICurrentUserService>(sp => sp.GetRequiredService<UserSwitcher>(), ServiceLifetime.Singleton);
 
-            ConfigureDatabase(services, _storageConfigurationProvider, _createDatabase);
+            services.ConfigureDatabase(_storageConfigurationProvider, _storageManagerStrategy);
 
             var serviceProvider = services.BuildServiceProvider();
 
@@ -54,24 +53,6 @@ namespace AuthRPolicy.Sample.Tests.Initialization
             await application.Initialize();
 
             return application;
-        }
-
-        private static void ConfigureDatabase(
-            IServiceCollection services,
-            StorageConfigurationProvider storageConfigurationProvider,
-            bool createDatabase)
-        {
-            services.AddSingleton<IStorageManager, StorageManager>();
-
-            if (createDatabase)
-                services.AddSingleton<IStorageManagerStrategy, StorageManagerRecreateStrategy>();
-            else
-                services.AddSingleton<IStorageManagerStrategy, StorageManagerRespawnStrategy>();
-
-            var dbContextOptions = storageConfigurationProvider.GetDbOptions();
-
-            services.ReplaceService<DbContextOptions>(dbContextOptions);
-            services.ReplaceService(dbContextOptions);
         }
     }
 }
